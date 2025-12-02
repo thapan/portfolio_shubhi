@@ -10,7 +10,8 @@ export default defineConfig({
       include: [/\.jsx?$/, /\.tsx?$/],
     }),
   ],
-  base: "/thapan-work/",
+  // Match GitHub Pages repo name for correct asset paths
+  base: "/thapanatwork/",
   esbuild: {
     loader: "jsx",
     include: /.*\.[jt]sx?$/,
