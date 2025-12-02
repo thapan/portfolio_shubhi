@@ -61,6 +61,28 @@ export default function ProjectCard({ project, index }) {
             {project.summary}
           </p>
 
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-purple-300 hover:text-purple-100 mb-4"
+            >
+              <span>View product</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          )}
+
+          {project.imageUrl && (
+            <div className="mb-4 rounded-xl overflow-hidden border border-gray-800/70 bg-gray-900/60">
+              <img
+                src={project.imageUrl}
+                alt={project.title}
+                className="w-full h-64 object-contain p-4"
+              />
+            </div>
+          )}
+
           {/* Tech Tags */}
           <div className="flex flex-wrap gap-2 mb-4">
             {project.tech.map((tech, i) => (
@@ -128,22 +150,74 @@ export default function ProjectCard({ project, index }) {
                     </div>
                   </div>
 
-                  {/* Flow Diagram (for projects without interactive demo) */}
+                  {/* Flow / Checklist */}
                   {project.flow && !project.demoType && (
                     <div className="mt-6 p-4 rounded-xl bg-gray-800/50 border border-gray-700/50">
-                      <h4 className="text-sm font-semibold text-purple-400 mb-4">Process Flow</h4>
-                      <div className="flex flex-wrap items-center justify-center gap-2">
-                        {project.flow.map((step, i) => (
-                          <React.Fragment key={i}>
-                            <div className="px-4 py-2 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-300 text-sm font-medium">
-                              {step}
-                            </div>
-                            {i < project.flow.length - 1 && (
-                              <ArrowRight className="w-4 h-4 text-purple-500/50" />
+                      <h4 className="text-sm font-semibold text-purple-400 mb-4">
+                        {project.listStyle === "ordered" ? "Scope" : "Process Flow"}
+                      </h4>
+                      {project.listStyle === "ordered" ? (
+                        <ol className="space-y-2 list-decimal list-inside text-sm text-gray-300">
+                          {project.flow.map((step, i) => (
+                            <li key={i} className="pl-1">{step}</li>
+                          ))}
+                        </ol>
+                      ) : (
+                        <div className="flex flex-wrap items-center justify-center gap-2">
+                          {project.flow.map((step, i) => (
+                            <React.Fragment key={i}>
+                              <div className="px-4 py-2 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-300 text-sm font-medium">
+                                {step}
+                              </div>
+                              {i < project.flow.length - 1 && (
+                                <ArrowRight className="w-4 h-4 text-purple-500/50" />
+                              )}
+                            </React.Fragment>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Detailed items */}
+                  {project.details && (
+                    <div className="mt-6 space-y-4">
+                      {project.details.map((item, i) => (
+                        <div
+                          key={i}
+                          className="p-4 rounded-xl bg-gray-800/50 border border-gray-700/50"
+                        >
+                          <div className="flex items-start justify-between gap-3 mb-2">
+                            <h5 className="text-sm font-semibold text-white">
+                              {item.title}
+                            </h5>
+                            {item.tech && (
+                              <div className="flex flex-wrap gap-1 justify-end">
+                                {item.tech.map((t) => (
+                                  <TechBadge key={t} tech={t} delay={0} />
+                                ))}
+                              </div>
                             )}
-                          </React.Fragment>
-                        ))}
-                      </div>
+                          </div>
+                          {item.description && (
+                            <p className="text-sm text-gray-400 mb-3 leading-relaxed">
+                              {item.description}
+                            </p>
+                          )}
+                          {item.flow && (
+                            <ul className="list-disc list-inside space-y-1 text-xs text-gray-400">
+                              {item.flow.map((step, idx) => (
+                                <li key={idx}>{step}</li>
+                              ))}
+                            </ul>
+                          )}
+                          {item.demoType && (
+                            <div className="mt-3">
+                              <AnimatedDiagram type={item.demoType} />
+                            </div>
+                          )}
+                        </div>
+                      ))}
                     </div>
                   )}
 

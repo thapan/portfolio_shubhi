@@ -4,29 +4,54 @@ import { Building2, Tv, ChevronRight } from 'lucide-react';
 
 const timelineData = [
   {
+    company: "Amazon",
+    role: "Fire TV & Connectivity Engineer",
+    period: "2018 - 2025",
+    icon: Tv,
+    color: "blue",
+    highlights: [
+      "FTV Launch & Quality Assurance",
+      "Automation: Remotes & Routers",
+      "Lab Ops: RF stewardship & booking",
+      "OTA CLI Tool",
+      "Auto Jira Plugin",
+      "Wi-Fi stability testbeds"
+    ]
+  },
+  {
     company: "Qualcomm",
     role: "WLAN Quality Engineer",
     period: "2015 - 2018",
     icon: Building2,
     color: "purple",
     highlights: [
-      "100+ chipset releases delivered",
-      "ML-driven test prioritization",
-      "150+ device stress testing",
-      "Automation framework architect"
+      "100+ chipset releases delivered across 802.11 a/b/g/n/ac/ad",
+      "Built Python sanity/stress automation and multi-client farm (150+ devices)",
+      "Developed ML-based crash predictor to prioritize stability tests",
+      "Led max-client, RVR, and voice/Alexa WLAN validations; drove bug closure via Jira/Prism/IR"
     ]
   },
   {
-    company: "Amazon",
-    role: "Fire TV & Connectivity Engineer",
-    period: "2020 - 2025",
-    icon: Tv,
-    color: "blue",
+    company: "CDAC",
+    role: "PG Diploma • Embedded System Design",
+    period: "2014 - 2015",
+    icon: Building2,
+    color: "purple",
     highlights: [
-      "OTA CLI Migration (AWS)",
-      "Auto Jira MMS Plugin",
-      "Wi-Fi stability testbeds",
-      "Device launch ownership"
+      "Embedded systems design and firmware foundations",
+      "Microcontrollers, RTOS, and interfacing projects",
+      "Built capstone around end-to-end embedded stack"
+    ]
+  },
+  {
+    company: "Bachelor of Engineering",
+    role: "Electronics & Communication",
+    period: "2009 - 2013",
+    icon: Building2,
+    color: "purple",
+    highlights: [
+      "Electronics fundamentals: signals, circuits, communications",
+      "Projects in embedded/communication systems"
     ]
   }
 ];

@@ -156,7 +156,7 @@ const colorClasses = {
   }
 };
 
-function SkillBar({ skill, color, index, onHover }) {
+function SkillBar({ skill, color, index, onHover, isDim }) {
   const colors = colorClasses[color];
 
   return (
@@ -165,16 +165,13 @@ function SkillBar({ skill, color, index, onHover }) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="group cursor-pointer"
+      className={`group cursor-pointer transition-opacity duration-200 ${isDim ? 'opacity-40' : 'opacity-100'}`}
       onMouseEnter={() => onHover(skill)}
       onMouseLeave={() => onHover(null)}
     >
       <div className="flex justify-between items-center mb-2">
         <span className="text-gray-300 font-medium group-hover:text-white transition-colors">
           {skill.name}
-        </span>
-        <span className={`text-sm font-mono ${colors.text}`}>
-          {skill.level}%
         </span>
       </div>
       <div className="h-3 bg-gray-800 rounded-full overflow-hidden relative">
@@ -216,7 +213,6 @@ function SkillDetailPopup({ skill, color, onClose }) {
       <div className="flex items-center gap-3 mb-3">
         <div className={`w-2 h-2 rounded-full ${colors.bg}`} />
         <h4 className="text-lg font-semibold text-white">{skill.name}</h4>
-        <span className={`text-sm font-mono ${colors.text}`}>{skill.level}%</span>
       </div>
 
       <p className="text-gray-400 text-sm mb-4">{skill.description}</p>
@@ -254,7 +250,8 @@ function SkillCategory({ category, color, skills }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className={`relative p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/40 border ${colors.border} backdrop-blur-sm`}
+      className={`relative p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/40 border ${colors.border} backdrop-blur-sm overflow-visible`}
+      style={{ zIndex: hoveredSkill ? 40 : 1 }}
     >
       <h3 className={`text-xl font-bold mb-6 ${colors.text}`}>{category}</h3>
 
@@ -266,6 +263,7 @@ function SkillCategory({ category, color, skills }) {
             color={color}
             index={index}
             onHover={setHoveredSkill}
+            isDim={hoveredSkill && hoveredSkill.name !== skill.name}
           />
         ))}
       </div>
@@ -285,16 +283,17 @@ function SkillCategory({ category, color, skills }) {
 
 export default function SkillBarChart() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {skillsData.map((data) => (
-        <SkillCategory
-          key={data.category}
-          category={data.category}
-          color={data.color}
-          skills={data.skills}
-        />
-      ))}
-
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {skillsData.map((data) => (
+          <SkillCategory
+            key={data.category}
+            category={data.category}
+            color={data.color}
+            skills={data.skills}
+          />
+        ))}
+      </div>
       <style>{`
         @keyframes shimmer {
           0% { transform: translateX(-100%); }
@@ -304,6 +303,6 @@ export default function SkillBarChart() {
           animation: shimmer 2s infinite;
         }
       `}</style>
-    </div>
+    </>
   );
 }

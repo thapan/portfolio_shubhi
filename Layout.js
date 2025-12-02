@@ -12,6 +12,9 @@ const navItems = [
   { label: 'Contact', href: '#contact', icon: Mail },
 ];
 
+const RESUME_LINK = 'mailto:shubhamthapan@gmail.com?subject=Resume%20request%20%2F%20Role%20discovery';
+const BOOK_LINK = 'mailto:shubhamthapan@gmail.com?subject=Schedule%20a%2015%20min%20intro';
+
 export default function Layout({ children }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -79,13 +82,13 @@ export default function Layout({ children }) {
             {/* Logo */}
             <Link to={createPageUrl('Home')} className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center">
-                <span className="text-white font-bold text-lg">QE</span>
+                <span className="text-white font-bold text-lg">ST</span>
               </div>
               <span className="text-white font-semibold hidden sm:block">Portfolio</span>
             </Link>
 
-            {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-1">
+            {/* Desktop Nav + Actions */}
+            <div className="hidden md:flex items-center gap-2">
               {navItems.map((item) => (
                 <button
                   key={item.label}

@@ -11,8 +11,23 @@ const radarData = [
   { skill: 'Cloud/AWS', value: 80, fullMark: 100 },
 ];
 
-export default function SkillRadarChart() {
-  const [activeIndex, setActiveIndex] = useState(null);
+export default function SkillRadarChart({ activeSkill }) {
+  const highlighted = activeSkill || null;
+
+  const renderDot = (props) => {
+    const { cx, cy, payload } = props;
+    const isActive = highlighted === payload.skill;
+    return (
+      <circle
+        cx={cx}
+        cy={cy}
+        r={isActive ? 7 : 4}
+        fill={isActive ? '#fbbf24' : '#8b5cf6'}
+        stroke={isActive ? '#fff' : '#8b5cf6'}
+        strokeWidth={isActive ? 2 : 1.5}
+      />
+    );
+  };
 
   return (
     <motion.div
@@ -43,12 +58,12 @@ export default function SkillRadarChart() {
             <Radar
               name="Skills"
               dataKey="value"
-              stroke="#8b5cf6"
+              stroke={highlighted ? '#a78bfa' : '#8b5cf6'}
               fill="url(#radarGradient)"
-              fillOpacity={0.6}
-              strokeWidth={2}
-              dot={{ fill: '#8b5cf6', strokeWidth: 2, r: 4 }}
-              activeDot={{ r: 6, fill: '#a78bfa', stroke: '#fff', strokeWidth: 2 }}
+              fillOpacity={highlighted ? 0.35 : 0.6}
+              strokeWidth={highlighted ? 3 : 2}
+              dot={renderDot}
+              activeDot={false}
             />
             <defs>
               <linearGradient id="radarGradient" x1="0" y1="0" x2="0" y2="1">
@@ -61,7 +76,9 @@ export default function SkillRadarChart() {
       </div>
 
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-center">
-        <p className="text-gray-500 text-sm">Core competency overview</p>
+        <p className="text-gray-500 text-sm">
+          {highlighted ? `${highlighted} highlighted` : 'Core competency overview'}
+        </p>
       </div>
     </motion.div>
   );

@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProjectCard from './ProjectCard';
 
+const fireTvImage = new URL('../../assets/fire-tv-stick-4k.png', import.meta.url).href;
+
 const qualcommProjects = [
   {
     title: "ML-Driven Test Prioritization",
@@ -94,22 +96,67 @@ const qualcommProjects = [
     solution: "Developed targeted stress scenarios simulating real home environments with network congestion and interference.",
     impact: "Validated 99.5% voice command reliability under stress, contributing to successful Alexa integration.",
     flow: ["Network Stress", "Voice Commands", "Latency Check", "Reliability Score"]
-  },
-  {
-    title: "Jira Automation & Issue Analytics",
-    period: "2016-2018",
-    summary: "Automated Jira issue analysis and reporting to accelerate bug triage and track quality metrics.",
-    tech: ["Jira", "Automation", "Python", "Perl"],
-    problem: "Manual Jira tracking was inefficient and quality trends were difficult to visualize.",
-    solution: "Built automated scripts for issue categorization, duplicate detection, and trend visualization dashboards.",
-    impact: "Reduced triage time by 50% and provided real-time quality dashboards for leadership visibility.",
-    flow: ["Issue Scan", "Auto-Categorize", "Duplicate Check", "Dashboard Update"]
   }
 ];
 
 const amazonProjects = [
   {
-    title: "OTA CLI Migration (AWS)",
+    title: "Leadership: FTV Launch & Quality Assurance",
+    period: "2018-2019",
+    summary: "Launch owner for Fire TV sticks/cubes—drove Wi-Fi/BT/BLE/CoEx quality, OOBE/FFS readiness, and Live TV validation with leadership alignment.",
+    tech: ["Wi-Fi", "BT", "BLE", "CoEx", "FFS", "Live TV", "Frank", "Dektec"],
+    problem: "Connectivity regressions and Live TV setup risks could delay launches without clear ownership and coverage.",
+    solution: "Owned daily launch triage and sign-offs; ran Wi-Fi/BT/BLE/CoEx regressions, OOBE/FFS readiness, and end-to-end Frank/Dektec Live TV validation across bands and regions.",
+    impact: "On-time launches with stable connectivity KPIs, smoother onboarding via FFS, and higher Live TV setup success.",
+    listStyle: "ordered",
+    link: "https://www.amazon.com/dp/B08XVYZ1Y5/ref=tsm_1_fb_lk?th=1",
+    imageUrl: fireTvImage,
+    flow: [
+      "Fire TV stick/cube launch coverage (Tank, Mantis, Stark, Raven)",
+      "Wi-Fi/BT/BLE/CoEx regressions + OOBE/FFS flows",
+      "Live TV (Frank/Dektec) setup validation",
+      "Daily status + leadership comms",
+      "Release gates and sign-off"
+    ]
+  },
+  {
+    title: "Automation: Remotes & Routers",
+    period: "2018-2019",
+    summary: "Built automation for remote latency and router UI to accelerate connectivity sign-offs.",
+    tech: ["Automation", "Arduino", "Routers"],
+    problem: "Manual remote latency and router reconfig slowed test cycles and risked inconsistency.",
+    solution: "Arduino rig for Snow/Lindberg remotes; scripted router UI (TP-Link, Netgear, etc.) for rapid topology changes.",
+    impact: "Release gating on latency KPIs and faster multi-router coverage.",
+    hasDemo: true,
+    demoType: "remote-router",
+    listStyle: "ordered",
+    flow: [
+      "Remote latency automation (Arduino rig for Snow/Lindberg)",
+      "Router UI automation (TP-Link, Netgear, etc.)",
+      "Topology spins for connectivity scenarios",
+      "Faster regression turnaround"
+    ]
+  },
+  {
+    title: "Lab Work: RF Stewardship & Booking",
+    period: "2018-2019",
+    summary: "Ran RF labs, RVR/perf/stress setups, and built a booking tool to avoid conflicts and maximize utilization.",
+    tech: ["RF", "RVR", "Perf", "Stress", "Scheduling"],
+    problem: "Shared labs caused conflicts and inconsistent environments for reproducible connectivity testing.",
+    solution: "Maintained shield rooms/RF boxes, calibrated RVR/perf/stress rigs, and built a lab booking tool with conflict checks.",
+    impact: "Higher lab throughput and reproducible results for connectivity runs.",
+    hasDemo: true,
+    demoType: "lab-ops",
+    listStyle: "ordered",
+    flow: [
+      "Lab stewardship: shield rooms/RF boxes",
+      "RVR/perf/stress configurations",
+      "Conflict-free booking and scheduling",
+      "Ready-to-run environments for teams"
+    ]
+  },
+  {
+    title: "OTA CLI Tool",
     period: "2020-2022",
     summary: "Led migration of Over-The-Air update testing to cloud-based AWS infrastructure with CLI tooling.",
     tech: ["AWS", "Python", "Automation", "CLI"],
@@ -133,7 +180,15 @@ const amazonProjects = [
     problem: "Manual defect logging from test results was time-consuming and error-prone.",
     solution: "Built plugin to automatically create, update, and link Jira tickets from test execution results.",
     impact: "Saved 15+ hours per week across team and improved defect tracking accuracy by 95%.",
-    flow: ["Test Failure", "Auto-Capture", "Jira Create", "Link & Notify"]
+    hasDemo: true,
+    demoType: "jira-mms",
+    flow: ["Test Failure", "Auto-Capture", "Jira Create", "Link & Notify"],
+    metrics: [
+      { value: "95%", label: "Defect accuracy" },
+      { value: "15+ hrs", label: "Saved weekly" },
+      { value: "<1 min", label: "Ticket latency" },
+      { value: "0", label: "Manual fields" }
+    ]
   },
   {
     title: "Wi-Fi Stability Testbeds",
@@ -158,9 +213,9 @@ const amazonProjects = [
 ];
 
 export default function ProjectsSection() {
-  const [activeTab, setActiveTab] = useState("qualcomm");
+  const [activeTab, setActiveTab] = useState("amazon");
 
-  const projects = activeTab === "qualcomm" ? qualcommProjects : amazonProjects;
+  const projects = activeTab === "amazon" ? amazonProjects : qualcommProjects;
 
   return (
     <section id="projects" className="py-32 px-6 relative">
@@ -189,16 +244,16 @@ export default function ProjectsSection() {
             <Tabs value={activeTab} onValueChange={setActiveTab} className="inline-flex">
               <TabsList className="bg-gray-800/50 border border-gray-700/50 p-1">
                 <TabsTrigger
+                  value="amazon"
+                  className="data-[state=active]:bg-blue-600 data-[state=active]:text-white px-6 py-2"
+                >
+                  Amazon (2018-Present)
+                </TabsTrigger>
+                <TabsTrigger
                   value="qualcomm"
                   className="data-[state=active]:bg-purple-600 data-[state=active]:text-white px-6 py-2"
                 >
                   Qualcomm (2015-2018)
-                </TabsTrigger>
-                <TabsTrigger
-                  value="amazon"
-                  className="data-[state=active]:bg-blue-600 data-[state=active]:text-white px-6 py-2"
-                >
-                  Amazon (2020-2025)
                 </TabsTrigger>
               </TabsList>
             </Tabs>

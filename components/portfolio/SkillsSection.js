@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { BarChart3, Radar } from 'lucide-react';
 import SkillRadarChart from './SkillRadarChart';
-import SkillBarChart from './SkillBarChart';
 
 export default function SkillsSection() {
-  const [activeView, setActiveView] = useState("bars");
+  const [hoveredSkill, setHoveredSkill] = useState(null);
 
   return (
-    <section id="skills" className="py-32 px-6 relative overflow-hidden">
+    <section id="skills" className="pt-20 pb-28 px-6 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
@@ -26,76 +23,57 @@ export default function SkillsSection() {
             Technical <span className="text-purple-400">Expertise</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
-            A decade of specialized skills in wireless validation and automation.
-            <span className="text-purple-300"> Hover over any skill</span> to see examples in action.
+            Explore the capabilities below.
           </p>
-
-          {/* View Toggle */}
-          <Tabs value={activeView} onValueChange={setActiveView} className="inline-flex">
-            <TabsList className="bg-gray-800/50 border border-gray-700/50 p-1">
-              <TabsTrigger
-                value="bars"
-                className="data-[state=active]:bg-purple-600 data-[state=active]:text-white px-6 py-2 flex items-center gap-2"
-              >
-                <BarChart3 className="w-4 h-4" />
-                Detailed View
-              </TabsTrigger>
-              <TabsTrigger
-                value="radar"
-                className="data-[state=active]:bg-purple-600 data-[state=active]:text-white px-6 py-2 flex items-center gap-2"
-              >
-                <Radar className="w-4 h-4" />
-                Overview
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
         </motion.div>
 
-        {/* Content based on active view */}
         <motion.div
-          key={activeView}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          {activeView === "bars" ? (
-            <SkillBarChart />
-          ) : (
-            <div className="max-w-3xl mx-auto">
-              <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/40 border border-gray-700/50 backdrop-blur-sm">
-                <SkillRadarChart />
+          <div className="max-w-3xl mx-auto">
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/40 border border-gray-700/50 backdrop-blur-sm">
+              <SkillRadarChart activeSkill={hoveredSkill} />
+              <p className="text-center text-sm text-gray-500 mt-4">
+                Hover the legend to spotlight a skill; radar shows relative focus across capabilities.
+              </p>
 
-                {/* Legend */}
-                <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {[
-                    { label: "Wireless/RF", value: "95%", desc: "802.11, RVR, Sniffer Analysis" },
-                    { label: "Testing", value: "95%", desc: "Automation, Stress, Regression" },
-                    { label: "Automation", value: "92%", desc: "Framework Design, CI/CD" },
-                    { label: "Python/Perl", value: "88%", desc: "Scripting, Tools, Analytics" },
-                    { label: "Cloud/AWS", value: "80%", desc: "Infrastructure, Scaling" },
-                    { label: "ML/Analytics", value: "75%", desc: "Test Prioritization, Data Analysis" },
-                  ].map((item, index) => (
-                    <motion.div
-                      key={item.label}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      className="p-3 rounded-xl bg-gray-800/30 border border-gray-700/30 hover:border-purple-500/30 transition-colors group cursor-default"
-                    >
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-gray-300 font-medium text-sm group-hover:text-white transition-colors">
-                          {item.label}
-                        </span>
-                        <span className="text-purple-400 font-mono text-sm">{item.value}</span>
-                      </div>
-                      <p className="text-gray-500 text-xs">{item.desc}</p>
-                    </motion.div>
-                  ))}
-                </div>
+              {/* Legend */}
+              <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-4">
+                {[
+                  { label: "Wireless/RF", desc: "802.11, RVR, Sniffer Analysis" },
+                  { label: "Testing", desc: "Automation, Stress, Regression" },
+                  { label: "Automation", desc: "Framework Design, CI/CD" },
+                  { label: "Python/Perl", desc: "Scripting, Tools, Analytics" },
+                  { label: "Cloud/AWS", desc: "Infrastructure, Scaling" },
+                  { label: "ML/Analytics", desc: "Test Prioritization, Data Analysis" },
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    onMouseEnter={() => setHoveredSkill(item.label)}
+                    onMouseLeave={() => setHoveredSkill(null)}
+                    className={`p-3 rounded-xl bg-gray-800/30 border border-gray-700/30 transition-colors group cursor-default ${
+                      hoveredSkill === item.label ? 'border-purple-500/50 bg-gray-800/50' : 'hover:border-purple-500/30'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className={`text-sm font-medium transition-colors ${
+                        hoveredSkill === item.label ? 'text-white' : 'text-gray-300 group-hover:text-white'
+                      }`}>
+                        {item.label}
+                      </span>
+                    </div>
+                    <p className="text-gray-500 text-xs">{item.desc}</p>
+                  </motion.div>
+                ))}
               </div>
             </div>
-          )}
+          </div>
         </motion.div>
 
         {/* Additional Tools Section */}
@@ -110,26 +88,108 @@ export default function SkillsSection() {
             Tools & Technologies
           </h3>
 
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              "Jira", "Git", "Jenkins", "AWS", "Docker",
-              "Wireshark", "IxChariot", "Spirent", "Attenuators",
-              "Shield Boxes", "Python", "Perl", "Bash", "SQL",
-              "Pandas", "scikit-learn", "REST APIs"
-            ].map((tool, index) => (
-              <motion.span
-                key={tool}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.03 }}
-                whileHover={{ scale: 1.1, y: -2 }}
-                className="px-4 py-2 rounded-xl bg-gray-800/50 text-gray-300 border border-gray-700/50
-                         hover:border-purple-500/50 hover:text-white hover:bg-gray-800
-                         transition-all duration-200 cursor-default"
-              >
-                {tool}
-              </motion.span>
+              {
+                title: "Planning & Tracking",
+                items: [
+                  { label: "Jira", url: "https://www.atlassian.com/software/jira" },
+                  { label: "Prism" },
+                  { label: "Salesforce IR", url: "https://www.salesforce.com" }
+                ]
+              },
+              {
+                title: "Version Control & CI/CD",
+                items: [
+                  { label: "Git", url: "https://git-scm.com" },
+                  { label: "Jenkins", url: "https://www.jenkins.io" }
+                ]
+              },
+              {
+                title: "Cloud & Containers",
+                items: [
+                  { label: "AWS", url: "https://aws.amazon.com" },
+                  { label: "Docker", url: "https://www.docker.com" }
+                ]
+              },
+              {
+                title: "Network/WLAN Test",
+                items: [
+                  { label: "Wireshark", url: "https://www.wireshark.org" },
+                  { label: "Omnipeek", url: "https://www.liveaction.com/products/omnipeek/" },
+                  { label: "Ixia IxLoad", url: "https://www.keysight.com/us/en/products/network-test/ixload.html" },
+                  { label: "IxChariot", url: "https://www.keysight.com/us/en/products/network-test/ixchariot.html" },
+                  { label: "IxNetwork", url: "https://www.keysight.com/us/en/products/network-test/ixnetwork.html" },
+                  { label: "Iperf", url: "https://iperf.fr" },
+                  { label: "Spirent", url: "https://www.spirent.com" }
+                ]
+              },
+              {
+                title: "RF/Lab",
+                items: [
+                  { label: "Attenuators" },
+                  { label: "Shield Boxes" }
+                ]
+              },
+              {
+                title: "Terminals & Utilities",
+                items: [
+                  { label: "Tera Term", url: "https://osdn.net/projects/ttssh2/releases/" },
+                  { label: "PuTTY", url: "https://www.putty.org" }
+                ]
+              },
+              {
+                title: "Languages",
+                items: [
+                  { label: "Python", url: "https://www.python.org" },
+                  { label: "Perl", url: "https://www.perl.org" },
+                  { label: "C", url: "https://en.wikipedia.org/wiki/C_(programming_language)" },
+                  { label: "Bash", url: "https://www.gnu.org/software/bash/" },
+                  { label: "SQL", url: "https://en.wikipedia.org/wiki/SQL" }
+                ]
+              },
+              {
+                title: "Data & ML",
+                items: [
+                  { label: "Pandas", url: "https://pandas.pydata.org" },
+                  { label: "scikit-learn", url: "https://scikit-learn.org" },
+                  { label: "REST APIs", url: "https://restfulapi.net" }
+                ]
+              }
+            ].map((group, idx) => (
+              <div key={group.title} className="p-4 rounded-xl bg-gray-800/50 border border-gray-700/50">
+                <h4 className="text-sm font-semibold text-white mb-3">{group.title}</h4>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((tool, index) => {
+                    const content = (
+                      <span className="px-3 py-1.5 rounded-lg bg-gray-900/50 text-gray-300 border border-gray-700/50
+                               hover:border-purple-500/50 hover:text-white hover:bg-gray-800
+                               transition-all duration-200 cursor-pointer text-sm">
+                        {tool.label}
+                      </span>
+                    );
+                    return (
+                      <motion.span
+                        key={tool.label}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: (idx * 0.05) + index * 0.02 }}
+                        whileHover={{ scale: 1.06, y: -1 }}
+                        className="inline-flex"
+                      >
+                        {tool.url ? (
+                          <a href={tool.url} target="_blank" rel="noreferrer">
+                            {content}
+                          </a>
+                        ) : (
+                          content
+                        )}
+                      </motion.span>
+                    );
+                  })}
+                </div>
+              </div>
             ))}
           </div>
         </motion.div>

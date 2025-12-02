@@ -1,31 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Cpu, Bug, Zap, Award } from 'lucide-react';
+import { Cpu, Bug, Zap, Award, Wifi, Wrench } from 'lucide-react';
 
 const stats = [
   {
-    icon: Cpu,
-    value: "100+",
-    label: "Chipset Releases",
-    description: "Delivered across platforms"
-  },
-  {
-    icon: Bug,
-    value: "500+",
-    label: "Bugs Caught",
-    description: "Before production"
+    icon: Award,
+    value: "10+",
+    label: "Launch leadership",
+    description: "Launched Fire TV sticks/cubes/remotes/hotspot/Smart TVs and Echo Studio; QCA Beeliner/Dakota/ath10k chipsets"
   },
   {
     icon: Zap,
     value: "60%",
-    label: "Faster Testing",
-    description: "Through automation"
+    label: "Automation impact",
+    description: "Automated end-to-end test cases and stabilized multiple frameworks"
   },
   {
-    icon: Award,
-    value: "10+",
-    label: "Recognitions",
-    description: "For excellence"
+    icon: Wifi,
+    value: "1000s",
+    label: "Testing",
+    description: "Written and executed thousands of end-to-end cases across max-client, RVR, voice/Alexa, and regression"
+  },
+  {
+    icon: Wrench,
+    value: "25+",
+    label: "Tooling built",
+    description: "ML crash predictor, build-diff detector, multi-client farm automation, lab booking & ZTP, Auto Jira, OTA CLI, and day-to-day scripts"
   }
 ];
 

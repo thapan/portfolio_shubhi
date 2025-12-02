@@ -4,7 +4,8 @@ import {
   Database, Brain, ArrowRight, CheckCircle, AlertTriangle,
   Cloud, Server, Smartphone, RefreshCw, Upload, Download,
   Wifi, Radio, BarChart3, Zap, Target, TrendingUp,
-  GitBranch, TestTube, Bug, Shield
+  GitBranch, TestTube, Bug, Shield, Calendar, Clock, CheckCircle2,
+  Play, Pause, MessageSquare, FileText, Link2
 } from 'lucide-react';
 
 // ML Test Prioritization Animation
@@ -182,7 +183,7 @@ function OTAMigrationDemo() {
     <div className="relative p-6 rounded-xl bg-gray-900/50 border border-blue-500/20">
       <div className="flex items-center gap-2 mb-4">
         <Cloud className="w-5 h-5 text-blue-400" />
-        <span className="text-blue-300 font-semibold text-sm">OTA CLI Migration (AWS)</span>
+        <span className="text-blue-300 font-semibold text-sm">OTA Cli Tool</span>
       </div>
 
       <div className="relative">
@@ -297,6 +298,212 @@ function OTAMigrationDemo() {
               <StatusMessage key="success" icon={CheckCircle} color="green" text="10x scalability • 40% cost reduction" success />
             )}
           </AnimatePresence>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Auto Jira Plugin "interactive video"
+function JiraDemo() {
+  const scenes = [
+    {
+      title: "Failure captured from automation framework",
+      subtitle: "Crash + log bundle streamed from automation framework run; stacktrace parsed in-line.",
+      accent: "from-pink-500/20 via-purple-500/10 to-gray-900/60",
+      chips: ["CrashLog.zip", "Stacktrace.txt", "Screenshot.png"],
+      jira: { status: "Draft", priority: "P1", link: "AUT-482" }
+    },
+    {
+      title: "Auto-create Jira issue",
+      subtitle: "Fields mapped from signal: component, priority, labels, and owner suggestions.",
+      accent: "from-purple-500/25 via-indigo-500/10 to-gray-900/60",
+      chips: ["Component: Fire TV", "Priority: P1", "Labels: Automation"],
+      jira: { status: "Created", priority: "P1", link: "AUT-482" }
+    },
+    {
+      title: "Link & notify",
+      subtitle: "Links test case + Automation framework evidence; posts deep-links to Slack/email watchers.",
+      accent: "from-emerald-500/20 via-blue-500/10 to-gray-900/60",
+      chips: ["Slack notify", "Watchers added", "TC: 1287"],
+      jira: { status: "Linked", priority: "P1", link: "AUT-482" }
+    }
+  ];
+
+  const [scene, setScene] = useState(0);
+  const [playing, setPlaying] = useState(true);
+
+  useEffect(() => {
+    if (!playing) return;
+    const timer = setInterval(() => {
+      setScene((prev) => (prev + 1) % scenes.length);
+    }, 2200);
+    return () => clearInterval(timer);
+  }, [playing, scenes.length]);
+
+  const active = scenes[scene];
+
+  return (
+    <div className="relative p-6 rounded-xl bg-gray-900/50 border border-pink-500/20">
+      <div className="flex items-center gap-2 mb-4">
+        <Bug className="w-5 h-5 text-pink-300" />
+        <span className="text-pink-200 font-semibold text-sm">Auto Jira Plugin</span>
+        <span className="text-[11px] text-gray-400 bg-gray-800/70 border border-gray-700/60 px-2 py-0.5 rounded">
+          Interactive video walkthrough
+        </span>
+      </div>
+
+      <div className="grid md:grid-cols-[2fr_1fr] gap-4">
+        {/* Video window */}
+        <div className="relative p-4 rounded-xl bg-gray-900/80 border border-pink-500/30 shadow-inner">
+          <div className="flex items-center justify-between text-xs text-gray-400">
+            <div className="flex items-center gap-2">
+              <div className="px-2 py-1 rounded border border-white/5 bg-white/5 text-white/80 flex items-center gap-1">
+                <Play className="w-3 h-3 text-emerald-300" />
+                <span>Recorded run</span>
+              </div>
+              <span className="text-gray-500">automation framework → Jira sync</span>
+            </div>
+            <button
+              onClick={() => setPlaying((p) => !p)}
+              className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-pink-500/10 border border-pink-500/40 text-pink-200 hover:border-pink-400/70"
+            >
+              {playing ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
+              <span>{playing ? 'Pause' : 'Play'}</span>
+            </button>
+          </div>
+
+          <div className="mt-4 h-52 rounded-xl border border-pink-500/30 overflow-hidden bg-gray-800/60 relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active.title}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className={`absolute inset-0 p-4 bg-gradient-to-br ${active.accent}`}
+              >
+                <div className="flex items-center justify-between text-xs text-gray-200 mb-3">
+                  <div className="flex items-center gap-2">
+                    <MessageSquare className="w-4 h-4 text-pink-200" />
+                    <span className="font-semibold">{active.title}</span>
+                  </div>
+                  <span className="px-2 py-0.5 rounded-full bg-black/30 border border-white/10 text-[11px]">
+                    Scene {scene + 1}/3
+                  </span>
+                </div>
+
+                <p className="text-sm text-gray-200/90 mb-3">{active.subtitle}</p>
+
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {active.chips.map((chip) => (
+                    <motion.span
+                      key={chip}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.2 }}
+                      className="text-[11px] px-2 py-1 rounded-lg bg-black/30 border border-white/10 text-gray-100"
+                    >
+                      {chip}
+                    </motion.span>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-3 gap-2 text-[11px]">
+                  <div className="p-2 rounded-lg bg-white/5 border border-white/10">
+                    <div className="text-gray-400">Evidence</div>
+                    <div className="text-pink-100 font-semibold">Attachments synced</div>
+                  </div>
+                  <div className="p-2 rounded-lg bg-white/5 border border-white/10">
+                    <div className="text-gray-400">Issue</div>
+                    <div className="text-emerald-200 font-semibold">{active.jira.status}</div>
+                  </div>
+                  <div className="p-2 rounded-lg bg-white/5 border border-white/10">
+                    <div className="text-gray-400">Priority</div>
+                    <div className="text-amber-200 font-semibold">{active.jira.priority}</div>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-black/30">
+                  <motion.div
+                    key={`progress-${scene}`}
+                    initial={{ width: '0%' }}
+                    animate={{ width: `${((scene + 1) / scenes.length) * 100}%` }}
+                    transition={{ duration: 0.5 }}
+                    className="h-full bg-gradient-to-r from-pink-400 via-purple-400 to-emerald-400"
+                  />
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          <div className="mt-3 flex items-center gap-2">
+            {scenes.map((s, idx) => (
+              <button
+                key={s.title}
+                onClick={() => {
+                  setScene(idx);
+                  setPlaying(false);
+                }}
+                className={`flex-1 h-2 rounded-full transition-colors ${
+                  idx === scene ? 'bg-pink-400' : 'bg-gray-700 hover:bg-gray-600'
+                }`}
+                aria-label={`Jump to ${s.title}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Jira details side panel */}
+        <div className="space-y-3">
+          <div className="p-3 rounded-xl bg-gray-800/60 border border-pink-500/30">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <Link2 className="w-4 h-4 text-pink-200" />
+                <span className="text-sm font-semibold text-white">Jira Ticket Snapshot</span>
+              </div>
+              <span className="text-xs text-gray-400">#{active.jira.link}</span>
+            </div>
+            <div className="space-y-2 text-xs text-gray-300">
+              <div className="flex items-center justify-between">
+                <span>Status</span>
+                <span className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">
+                  {active.jira.status}
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Priority</span>
+                <span className="px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-200">
+                  {active.jira.priority}
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Assignee</span>
+                <span className="text-gray-100">Auto-suggested</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-3 rounded-xl bg-gray-800/60 border border-purple-500/30">
+            <div className="flex items-center gap-2 mb-2">
+              <FileText className="w-4 h-4 text-purple-200" />
+              <span className="text-sm font-semibold text-white">Live Signals</span>
+            </div>
+            <ul className="space-y-2 text-xs text-gray-300">
+              <li className="flex items-center justify-between">
+                <span>Attachments pushed</span>
+                <span className="text-emerald-300 font-semibold">Yes</span>
+              </li>
+              <li className="flex items-center justify-between">
+                <span>Watchers notified</span>
+                <span className="text-emerald-300 font-semibold">{scene >= 2 ? 'Slack + Email' : 'Queued'}</span>
+              </li>
+              <li className="flex items-center justify-between">
+                <span>Deep link to automation framework</span>
+                <span className="text-emerald-300 font-semibold">Attached</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -482,8 +689,242 @@ function RVRTestDemo() {
   );
 }
 
+// Lab Ops & Booking Animation
+function LabOpsDemo() {
+  const slots = [
+    { time: "09:00", team: "Connectivity", room: "RF-1", status: "booked" },
+    { time: "11:00", team: "Audio", room: "RF-2", status: "free" },
+    { time: "13:00", team: "Apps", room: "RF-1", status: "free" },
+    { time: "15:00", team: "Connectivity", room: "Shield", status: "booked" },
+  ];
+  const [activeSlot, setActiveSlot] = useState(0);
+  const [rfReady, setRfReady] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlot((prev) => (prev + 1) % slots.length);
+      setRfReady((prev) => !prev);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative p-6 rounded-xl bg-gray-900/50 border border-indigo-500/20">
+      <div className="flex items-center gap-2 mb-4">
+        <Calendar className="w-5 h-5 text-indigo-400" />
+        <span className="text-indigo-300 font-semibold text-sm">RF Lab Booking & Readiness</span>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3">
+        <div className="p-3 rounded-lg bg-gray-800/50 border border-indigo-500/20">
+          <div className="flex items-center gap-2 mb-2">
+            <Clock className="w-4 h-4 text-indigo-300" />
+            <span className="text-xs text-indigo-200 font-semibold">Schedule</span>
+          </div>
+          <div className="space-y-2">
+            {slots.map((slot, idx) => {
+              const isActive = idx === activeSlot;
+              return (
+                <motion.div
+                  key={idx}
+                  animate={{
+                    borderColor: isActive ? 'rgba(99,102,241,0.6)' : 'rgba(75,85,99,0.5)',
+                    backgroundColor: isActive ? 'rgba(99,102,241,0.12)' : 'rgba(31,41,55,0.5)'
+                  }}
+                  className="p-2 rounded-lg border text-xs flex justify-between items-center"
+                >
+                  <div className="flex flex-col">
+                    <span className="text-gray-200 font-mono">{slot.time}</span>
+                    <span className="text-gray-400">{slot.team}</span>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-gray-300">{slot.room}</div>
+                    <div className={`text-[10px] ${slot.status === "booked" ? 'text-emerald-400' : 'text-gray-500'}`}>
+                      {slot.status === "booked" ? 'Reserved' : 'Available'}
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="p-3 rounded-lg bg-gray-800/50 border border-indigo-500/20">
+          <div className="flex items-center gap-2 mb-2">
+            <Shield className="w-4 h-4 text-emerald-300" />
+            <span className="text-xs text-emerald-200 font-semibold">RF Readiness</span>
+          </div>
+          <div className="space-y-3">
+            {[
+              { label: "Shield room", ready: rfReady },
+              { label: "Attenuators", ready: !rfReady },
+              { label: "RVR rig", ready: rfReady },
+              { label: "Perf/stress", ready: !rfReady },
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                animate={{ opacity: item.ready ? 1 : 0.6 }}
+                className="flex items-center justify-between text-xs text-gray-300"
+              >
+                <span>{item.label}</span>
+                <span className={item.ready ? 'text-emerald-400' : 'text-amber-400'}>
+                  {item.ready ? 'Ready' : 'Configuring'}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+          <div className="mt-3 p-2 rounded-lg border border-indigo-500/30 bg-indigo-500/5 text-center">
+            <span className="text-xs text-indigo-200">
+              Auto-conflict checks & status broadcast to teams
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Leadership: FTV Launch & Quality Assurance
+function FTVLeadershipDemo() {
+  const stages = [
+    { label: "Plan", detail: "Coverage & owners", color: "from-blue-500 to-indigo-500" },
+    { label: "Validate", detail: "Wi-Fi/BT/BLE/CoEx + OOBE/FFS", color: "from-purple-500 to-violet-500" },
+    { label: "Live TV", detail: "Frank/Dektec E2E", color: "from-amber-500 to-orange-500" },
+    { label: "Gate", detail: "KPIs & sign-off", color: "from-emerald-500 to-teal-500" },
+  ];
+
+  return (
+    <div className="relative p-6 rounded-xl bg-gray-900/50 border border-purple-500/20">
+      <div className="flex items-center gap-2 mb-4">
+        <CheckCircle2 className="w-5 h-5 text-purple-300" />
+        <span className="text-purple-200 font-semibold text-sm">FTV Launch Flow</span>
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        {stages.map((stage, idx) => (
+          <motion.div
+            key={stage.label}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.1 }}
+            className={`p-3 rounded-lg bg-gradient-to-br ${stage.color} text-white shadow-sm`}
+          >
+            <div className="text-sm font-semibold">{idx + 1}. {stage.label}</div>
+            <div className="text-xs text-white/80">{stage.detail}</div>
+          </motion.div>
+        ))}
+      </div>
+      <div className="mt-4 p-3 rounded-lg bg-gray-800/60 border border-purple-500/30">
+        <p className="text-xs text-purple-200 font-semibold mb-1">KPIs gated</p>
+        <ul className="text-[11px] text-gray-300 space-y-1 list-disc list-inside">
+          <li>Remote latency thresholds</li>
+          <li>FFS/OOBE success rate</li>
+          <li>Wi-Fi/BT/BLE/CoEx regressions = 0 blockers</li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+// Automation: Remotes & Routers
+function RemoteRouterDemo() {
+  const routerProfiles = [
+    { name: "TP-Link AX3000", mode: "5 GHz WPA2", status: "applied" },
+    { name: "Netgear AC1900", mode: "2.4 GHz WPA3", status: "queued" },
+    { name: "Asus AX6000", mode: "5 GHz Open", status: "ready" },
+  ];
+  const [profile, setProfile] = useState(0);
+  const [latency, setLatency] = useState(45);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProfile((p) => (p + 1) % routerProfiles.length);
+      setLatency(30 + Math.random() * 40);
+    }, 1400);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative p-6 rounded-xl bg-gray-900/50 border border-amber-500/20">
+      <div className="flex items-center gap-2 mb-4">
+        <RefreshCw className="w-5 h-5 text-amber-400" />
+        <span className="text-amber-300 font-semibold text-sm">Automation: Remotes & Routers</span>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3">
+        <div className="p-3 rounded-lg bg-gray-800/50 border border-amber-500/30">
+          <div className="flex items-center gap-2 mb-2">
+            <Server className="w-4 h-4 text-amber-300" />
+            <span className="text-xs text-amber-100 font-semibold">Router Profiles</span>
+          </div>
+          <div className="space-y-2">
+            {routerProfiles.map((r, idx) => {
+              const active = idx === profile;
+              return (
+                <motion.div
+                  key={r.name}
+                  animate={{
+                    borderColor: active ? 'rgba(251,191,36,0.6)' : 'rgba(75,85,99,0.6)',
+                    backgroundColor: active ? 'rgba(251,191,36,0.12)' : 'rgba(31,41,55,0.6)'
+                  }}
+                  className="p-2 rounded-lg border text-xs flex justify-between items-center"
+                >
+                  <div className="flex flex-col">
+                    <span className="text-gray-200">{r.name}</span>
+                    <span className="text-gray-400">{r.mode}</span>
+                  </div>
+                  <span className={`text-[10px] ${r.status === "applied" ? "text-emerald-400" : "text-gray-500"}`}>
+                    {r.status}
+                  </span>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="p-3 rounded-lg bg-gray-800/50 border border-amber-500/30">
+          <div className="flex items-center gap-2 mb-2">
+            <Target className="w-4 h-4 text-emerald-300" />
+            <span className="text-xs text-emerald-100 font-semibold">Remote Latency</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex-1">
+              <div className="flex items-center justify-between text-xs text-gray-400">
+                <span>Latency</span>
+                <span className="text-emerald-300 font-mono">{latency.toFixed(0)} ms</span>
+              </div>
+              <div className="mt-2 h-2 rounded-full bg-gray-700 overflow-hidden">
+                <motion.div
+                  animate={{ width: `${Math.min(100, latency)}%` }}
+                  className="h-full bg-gradient-to-r from-emerald-400 to-emerald-600"
+                />
+              </div>
+              <p className="text-[10px] text-gray-500 mt-1">
+                Arduino rig auto-runs per remote; gates releases on KPIs.
+              </p>
+            </div>
+            <div className="p-2 rounded-lg bg-gray-900/60 border border-emerald-500/30 text-center">
+              <Zap className="w-5 h-5 text-emerald-400 mx-auto" />
+              <span className="text-[10px] text-emerald-200">Auto-run</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Export all demos
-export { MLPrioritizationDemo, OTAMigrationDemo, StressTestDemo, RVRTestDemo };
+export {
+  MLPrioritizationDemo,
+  OTAMigrationDemo,
+  JiraDemo,
+  StressTestDemo,
+  RVRTestDemo,
+  LabOpsDemo,
+  RemoteRouterDemo,
+  FTVLeadershipDemo
+};
 
 export default function AnimatedDiagram({ type }) {
   switch (type) {
@@ -491,10 +932,18 @@ export default function AnimatedDiagram({ type }) {
       return <MLPrioritizationDemo />;
     case 'ota-migration':
       return <OTAMigrationDemo />;
+    case 'jira':
+      return <JiraDemo />;
     case 'stress-test':
       return <StressTestDemo />;
     case 'rvr-test':
       return <RVRTestDemo />;
+    case 'lab-ops':
+      return <LabOpsDemo />;
+    case 'remote-router':
+      return <RemoteRouterDemo />;
+    case 'ftv-leadership':
+      return <FTVLeadershipDemo />;
     default:
       return null;
   }
