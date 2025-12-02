@@ -32,7 +32,7 @@ export default function ContactSection() {
             asChild
             className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-6 text-lg rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]"
           >
-            <a href="mailto:your.email@example.com">
+            <a href="mailto:shubhamthapan@gmail.com">
               <Mail className="mr-2 h-5 w-5" />
               Send Email
             </a>
@@ -43,7 +43,7 @@ export default function ContactSection() {
             variant="outline"
             className="border-blue-500/50 text-blue-300 hover:bg-blue-500/10 px-8 py-6 text-lg rounded-xl"
           >
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/shubham-thapan" target="_blank" rel="noopener noreferrer">
               <Linkedin className="mr-2 h-5 w-5" />
               LinkedIn
             </a>
