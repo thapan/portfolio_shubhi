@@ -355,7 +355,7 @@ function SnifferAnalysisDemo() {
   );
 }
 
-// OTA CLI Migration Animation
+// Dial-up/OTA CLI Migration Animation
 function OTAMigrationDemo() {
   const [step, setStep] = useState(0);
 
@@ -370,7 +370,7 @@ function OTAMigrationDemo() {
     <div className="relative p-6 rounded-xl bg-gray-900/50 border border-blue-500/20">
       <div className="flex items-center gap-2 mb-4">
         <Cloud className="w-5 h-5 text-blue-400" />
-        <span className="text-blue-300 font-semibold text-sm">OTA Cli Tool</span>
+        <span className="text-blue-300 font-semibold text-sm">Dial-up / OTA CLI Tool</span>
       </div>
 
       <div className="relative">
@@ -1013,6 +1013,86 @@ function FTVLeadershipDemo() {
   );
 }
 
+// FTV Launch PSI (Problem/Solution/Impact)
+function FTVLaunchPSIDemo() {
+  const [step, setStep] = useState(0);
+  const gates = [
+    { label: "Wi-Fi/BT/BLE/CoEx regressions", ok: step >= 1 },
+    { label: "OOBE/FFS success", ok: step >= 2 },
+    { label: "Live TV readiness", ok: step >= 2 },
+    { label: "Launch gate sign-off", ok: step >= 3 },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => setStep((s) => (s + 1) % 4), 1600);
+    return () => clearInterval(interval);
+  }, []);
+
+  const cards = [
+    {
+      title: "Problem",
+      copy: "E2E Fire TV QA across OOBE, Launcher, Settings, Connectivity, Alexa, Prime Video, 1P/2P apps—failures risked on-time launches.",
+      color: "border-red-400/40 bg-red-500/5 text-red-200",
+    },
+    {
+      title: "Solution",
+      copy: "Daily triage, regression gating, launch room readiness across OOBE/Launcher/Settings + Alexa/Prime/1P/2P apps; AWS-backed envs and PMT/TPM KPI alignment.",
+      color: "border-amber-300/40 bg-amber-500/5 text-amber-100",
+    },
+    {
+      title: "Impact",
+      copy: "5+ launches with zero critical escapes across connectivity/apps; OOBE/Live TV/Prime KPIs up; consistent global execution.",
+      color: "border-emerald-400/40 bg-emerald-500/5 text-emerald-100",
+    },
+  ];
+
+  return (
+    <div className="p-6 rounded-xl bg-gray-900/50 border border-purple-500/20">
+      <div className="flex items-center gap-2 mb-4">
+        <CheckCircle2 className="w-5 h-5 text-purple-300" />
+        <span className="text-purple-200 font-semibold text-sm">FTV Launch PSI</span>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-3 mb-4">
+        {cards.map((card, idx) => (
+          <motion.div
+            key={card.title}
+            animate={{ borderColor: step >= idx ? 'rgba(168,85,247,0.6)' : 'rgba(75,85,99,0.5)' }}
+            className={`p-3 rounded-lg border ${card.color} h-full`}
+          >
+            <div className="flex items-center justify-between mb-1">
+              <div className="text-sm font-semibold text-white">{card.title}</div>
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: step >= idx ? '#a78bfa' : '#4b5563' }} />
+            </div>
+            <p className="text-xs text-gray-300 leading-relaxed">{card.copy}</p>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="p-3 rounded-lg bg-gray-800/60 border border-gray-700/50">
+        <div className="flex items-center gap-2 mb-2">
+          <Calendar className="w-4 h-4 text-purple-300" />
+          <span className="text-xs text-purple-200 font-semibold">Launch Gates</span>
+        </div>
+        <div className="space-y-2">
+          {gates.map((gate, idx) => (
+            <motion.div
+              key={gate.label}
+              animate={{ opacity: gate.ok ? 1 : 0.6 }}
+              className="flex items-center justify-between text-[11px] text-gray-300"
+            >
+              <span>{gate.label}</span>
+              <span className={gate.ok ? 'text-emerald-300' : 'text-amber-300'}>
+                {gate.ok ? 'Ready' : 'In progress'}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Automation: Remotes & Routers
 function RemoteRouterDemo() {
   const routerProfiles = [
@@ -1111,6 +1191,7 @@ export {
   LabOpsDemo,
   RemoteRouterDemo,
   FTVLeadershipDemo,
+  FTVLaunchPSIDemo,
   DualClientSanityDemo,
   SnifferAnalysisDemo
 };
@@ -1133,6 +1214,8 @@ export default function AnimatedDiagram({ type }) {
       return <RemoteRouterDemo />;
     case 'ftv-leadership':
       return <FTVLeadershipDemo />;
+    case 'ftv-launch-psi':
+      return <FTVLaunchPSIDemo />;
     case 'dual-client':
       return <DualClientSanityDemo />;
     case 'sniffer-analysis':

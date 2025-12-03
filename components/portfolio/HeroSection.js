@@ -9,10 +9,13 @@ export default function HeroSection({ onScrollToSection }) {
   const resumeLink = 'mailto:shubhamthapan@gmail.com?subject=Resume%20request%20%2F%20Role%20discovery';
   const bookLink = 'mailto:shubhamthapan@gmail.com?subject=Schedule%20a%2015%20min%20intro';
   const typingPhrases = [
-    "Product Quality Engineer",
     "Automation Architect",
-    "Wireless Systems Engineer",
-    "Chaotic Explorer"
+    "Product QA Lead",
+    "Wireless Systems Engineer"
+  ];
+  const achievements = [
+    "Automation modernization + velocity gains",
+    "Trusted feedback and zero critical escapes across FTV launches"
   ];
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -89,9 +92,10 @@ export default function HeroSection({ onScrollToSection }) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.65, duration: 0.6 }}
-            className="flex flex-wrap justify-center gap-3 mb-12"
+            className="flex flex-wrap justify-center gap-3 mb-4"
           >
             {[
+              { icon: Clock, label: "10+ yrs QA/Automation", color: "text-emerald-300", border: "border-emerald-400/40" },
               { icon: MonitorSmartphone, label: "Connected Consumer Devices", color: "text-purple-300", border: "border-purple-400/40" },
               { icon: Crown, label: "Leadership", color: "text-amber-300", border: "border-amber-400/40" },
               { icon: Wifi, label: "Wireless", color: "text-cyan-300", border: "border-cyan-400/40" },
@@ -103,6 +107,23 @@ export default function HeroSection({ onScrollToSection }) {
               >
                 <item.icon className={`w-4 h-4 ${item.color}`} />
                 {item.label}
+              </span>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+            className="flex flex-wrap justify-center gap-3 mb-8"
+          >
+            {achievements.map((item, idx) => (
+              <span
+                key={idx}
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-gray-900/70 border border-purple-400/30 text-[12px] text-white/90"
+              >
+                <BadgeCheck className="w-3 h-3 text-emerald-300" />
+                <span className="whitespace-normal text-left">{item}</span>
               </span>
             ))}
           </motion.div>

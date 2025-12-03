@@ -12,8 +12,7 @@ const navItems = [
   { label: 'Contact', href: '#contact', icon: Mail },
 ];
 
-const RESUME_LINK = 'mailto:shubhamthapan@gmail.com?subject=Resume%20request%20%2F%20Role%20discovery';
-const BOOK_LINK = 'mailto:shubhamthapan@gmail.com?subject=Schedule%20a%2015%20min%20intro';
+const RESUME_URL = `${import.meta.env.BASE_URL}shubham_thapan_resume.pdf`;
 
 export default function Layout({ children }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -98,6 +97,15 @@ export default function Layout({ children }) {
                   {item.label}
                 </button>
               ))}
+              <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noreferrer"
+                download
+                className="px-4 py-2 text-gray-100 bg-purple-600/80 hover:bg-purple-600 rounded-lg border border-purple-500/40 transition-all duration-200"
+              >
+                Resume
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -132,6 +140,17 @@ export default function Layout({ children }) {
                     {item.label}
                   </button>
                 ))}
+                <a
+                  href={RESUME_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  download
+                  className="flex items-center gap-3 w-full px-4 py-3 text-gray-100 bg-purple-600/80 hover:bg-purple-600 rounded-lg border border-purple-500/40 transition-all duration-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Briefcase className="w-5 h-5 text-white" />
+                  Resume
+                </a>
               </div>
             </motion.div>
           )}

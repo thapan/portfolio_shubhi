@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Target, Zap, TrendingUp, ArrowRight, Play } from 'lucide-react';
+import { ChevronDown, Target, Zap, TrendingUp, ArrowRight, Play, Link2 } from 'lucide-react';
 import TechBadge from './TechBadge';
 import AnimatedDiagram from './AnimatedDiagram';
 
 export default function ProjectCard({ project, index }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const clampStyle = isExpanded ? {} : {
+    display: "-webkit-box",
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden"
+  };
 
   return (
     <motion.div
@@ -79,6 +85,23 @@ export default function ProjectCard({ project, index }) {
             </div>
           )}
 
+          {project.links && project.links.length > 0 && (
+            <div className="mb-4 flex flex-wrap gap-2">
+              {project.links.map((link, i) => (
+                <a
+                  key={i}
+                  href={link.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-xs font-semibold text-white/90 hover:text-white px-3 py-2 rounded-full border border-purple-400/30 bg-gradient-to-r from-purple-500/10 to-indigo-500/10 hover:from-purple-500/20 hover:to-indigo-500/20 shadow-[0_0_12px_rgba(139,92,246,0.15)] transition-all"
+                >
+                  <Link2 className="w-3 h-3 text-purple-300" />
+                  <span className="tracking-tight">{link.label}</span>
+                </a>
+              ))}
+            </div>
+          )}
+
           {/* Problem / Solution / Impact preview */}
           {(project.problem || project.solution || project.impact) && (
             <div className="mb-4 grid gap-3 md:grid-cols-3">
@@ -88,7 +111,9 @@ export default function ProjectCard({ project, index }) {
                     <Target className="w-4 h-4" />
                     <span>Problem</span>
                   </div>
-                  <p className="text-xs text-gray-400 leading-relaxed">{project.problem}</p>
+                  <p className="text-xs text-gray-400 leading-relaxed" style={clampStyle}>
+                    {project.problem}
+                  </p>
                 </div>
               )}
               {project.solution && (
@@ -97,7 +122,9 @@ export default function ProjectCard({ project, index }) {
                     <Zap className="w-4 h-4" />
                     <span>Solution</span>
                   </div>
-                  <p className="text-xs text-gray-400 leading-relaxed">{project.solution}</p>
+                  <p className="text-xs text-gray-400 leading-relaxed" style={clampStyle}>
+                    {project.solution}
+                  </p>
                 </div>
               )}
               {project.impact && (
@@ -106,7 +133,9 @@ export default function ProjectCard({ project, index }) {
                     <TrendingUp className="w-4 h-4" />
                     <span>Impact</span>
                   </div>
-                  <p className="text-xs text-gray-400 leading-relaxed">{project.impact}</p>
+                  <p className="text-xs text-gray-400 leading-relaxed" style={clampStyle}>
+                    {project.impact}
+                  </p>
                 </div>
               )}
             </div>
@@ -136,9 +165,14 @@ export default function ProjectCard({ project, index }) {
 
           {/* Tech Tags */}
           <div className="flex flex-wrap gap-2 mb-4">
-            {project.tech.map((tech, i) => (
-              <TechBadge key={tech} tech={tech} delay={i * 0.05} />
+            {(project.tech || []).slice(0, isExpanded ? project.tech.length : 5).map((tech, i) => (
+              <TechBadge key={`${tech}-${i}`} tech={tech} delay={i * 0.05} />
             ))}
+            {!isExpanded && project.tech && project.tech.length > 5 && (
+              <div className="px-3 py-1 rounded-lg bg-gray-800/60 border border-gray-700/50 text-xs text-gray-300">
+                +{project.tech.length - 5} more
+              </div>
+            )}
           </div>
 
           {/* Expanded Content */}

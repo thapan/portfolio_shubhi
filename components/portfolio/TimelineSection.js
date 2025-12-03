@@ -8,26 +8,22 @@ const timelineData = [
     icon: Building2,
     color: "purple",
     highlights: [
-      "Senior QA/Automation Lead",
-      "Automation Architect",
-      "Wireless/Connectivity QA Lead",
-      "TPM/PM for quality/automation tools",
-      "UI Developer for device/streaming experiences"
+      "Product QA & Automation Lead",
+      "Automation Architect (QA/DevEx)",
+      "Wireless/Connectivity QA Lead"
     ]
   },
   {
     company: "Amazon, India & USA",
-    role: "Fire TV & Connectivity Engineer",
+    role: "Product QA & Automation Lead (Fire TV)",
     period: "2018 - Present",
     icon: Tv,
     color: "blue",
     highlights: [
-      "FTV Launch & Quality Assurance",
-      "Automation: Remotes & Routers",
-      "Lab Ops: RF stewardship & booking",
-      "OTA CLI Tool",
-      "Auto Jira Plugin",
-      "Wi-Fi stability testbeds"
+      "FTV Product QA from prototype to launch",
+      "Automation lead",
+      "Cross-team launch readiness & program management",
+      "Lab ownership & device infrastructure", 
     ]
   },
   {

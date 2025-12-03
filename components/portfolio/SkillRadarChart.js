@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer } from 'recharts';
 
-const radarData = [
-  { skill: 'Wireless/RF', value: 95, fullMark: 100 },
-  { skill: 'Automation', value: 92, fullMark: 100 },
-  { skill: 'Python/Perl', value: 88, fullMark: 100 },
-  { skill: 'Testing', value: 95, fullMark: 100 },
-  { skill: 'ML/Analytics', value: 75, fullMark: 100 },
-  { skill: 'Cloud/AWS', value: 80, fullMark: 100 },
-];
-
-export default function SkillRadarChart({ activeSkill }) {
+export default function SkillRadarChart({ activeSkill, data }) {
+  const radarData = data || [
+    { skill: 'Wireless/RF', value: 95, fullMark: 100 },
+    { skill: 'Automation', value: 92, fullMark: 100 },
+    { skill: 'Python/Perl', value: 88, fullMark: 100 },
+    { skill: 'Testing', value: 95, fullMark: 100 },
+    { skill: 'ML/Analytics', value: 75, fullMark: 100 },
+    { skill: 'Cloud/AWS', value: 80, fullMark: 100 },
+  ];
   const highlighted = activeSkill || null;
 
   const renderDot = (props) => {

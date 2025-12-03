@@ -192,16 +192,19 @@ const amazonProjects = [
   title: "FTV Launch Leadership",
   summary:
     "Connectivity & launch execution lead for Fire TV 1P devices—driving readiness across Wi-Fi/BT/BLE/CoEx, OOBE/FFS, Live TV, QA gates, and global launch room alignment.",
-  tech: ["Wi-Fi", "BT", "BLE", "CoEx", "FFS", "Live TV", "Launch QA", "Program Mgmt"],
+  tech: ["Prime Video","Content","E2E","2P Apps","Wi-Fi", "BT", "BLE", "CoEx", "FFS", "Live TV", "Launch QA", "Program Mgmt"],
+  links: [
+    { label: "Smart TVs by Amazon", url: "https://www.amazon.com/firetv/smart-tvs-by-amazon?ref_=amzdv_esc_bn_clk_8521791011_mepage-ESC-3_d_smart-tvs-by_1" },
+    { label: "Fire TV Stick 4K Max Review", url: "https://www.androidcentral.com/streaming-tv/amazon-fire-tv-stick-4k-max-2023-review" },
+    { label: "Fire TV Hotspot (Mumbai)", url: "https://www.aboutamazon.in/news/devices/amazon-introduces-fire-tv-hotspot-an-all-inclusive-on-demand-video-streaming-service-for-tvs-in-mumbai" },
+    { label: "Fire TV Cube (product)", url: "https://www.amazon.com/dp/B08XVYZ1Y5/ref=tsm_1_fb_lk" }
+  ],
   problem:
-    "Connectivity regressions, Live TV failures, and OOBE misflows threatened on-time launches and impacted customer experience.",
-  
+  "E2E Fire TV product QA across OOBE, Launcher, Settings, Connectivity, Alexa, Prime Video, and 1P/2P apps—failures risked on-time launches.",
   solution:
-    "Led daily triage, regression gating, Live TV/OOBE readiness, QA sign-offs, and AWS launch room environment readiness. Aligned PMTs/TPMs and engineering on customer-impact metrics.",
-  
+    "Daily triage, regression gating, and launch room readiness across OOBE/Launcher/Settings, Alexa/Prime/1P/2P apps; AWS-backed environments and PMT/TPM alignment on customer KPIs.",
   impact:
-    "Delivered 5+ Fire TV generations with zero critical connectivity escapes; improved Live TV setup KPIs; ensured consistent global launch execution.",
-
+    "5+ launches with zero critical escapes across connectivity/apps; OOBE/Live TV/Prime KPIs up; consistent global execution.",
   details: [
     {
       title: "Fire TV 1P NPI Launches",
@@ -228,22 +231,22 @@ const amazonProjects = [
 {
   title: "Automation & Tooling",
   summary:
-    "Built end-to-end connectivity automation stack—automation frameworks, router/remote rigs, OTA pipelines, Jira tooling, lab scheduling tools, and self-healing execution flows.",
+    "Built and stabilized end-to-end automation for 1P Fire TV use cases; delivered tooling to drive consumption/utilization and faster issue closure.",
   
-  tech: ["Automation", "AWS", "Python", "CLI", "Jira", "Routers", "Arduino", "Amazon Q", "EC2", "Lambda"],
+  tech: ["Automation", "AWS", "Design Docs", "Python", "CLI", "Jira", "Routers", "Arduino", "Amazon Q", "EC2", "Lambda"],
 
   problem:
-    "Manual regression workflows—router changes, remote latency tests, OTA provisioning, and defect logging—slowed sign-offs and introduced risk.",
+    "1P Fire TV automation was under-utilized and flaky; manual router changes, OTA dial-up, and defect logging slowed sign-offs.",
   
   solution:
-    "Designed automation frameworks, AWS-powered tools, CLI pipelines, Jira integrations, KPI rigs, router UI automation, and self-healing prompts. Hardened frameworks with SDE collaboration.",
+    "Stabilized core automation libraries and 1P end-to-end suites to lift consumption/utilization; built Auto Jira MMS for automated defect capture; delivered dial-up/OTA CLI tool to LTPMs; maintained router/remote rigs and self-healing prompts.",
   
   impact:
-    "10× OTA scale, 70%+ reduction in manual defect work, 30% faster triage, 25% better lab utilization, and 3× automation usage across Smart TVs.",
+    "Higher automation consumption for 1P FTV, faster OTA/LTPM workflows, 70%+ reduction in manual defect work with Auto Jira, 30% faster triage, and 25% better lab utilization.",
 
   details: [
-      {
-      title: "OTA CLI Tool Migration",
+    {
+      title: "Dial-up/OTA CLI Tool Migration",
       description:
         "Migrated OTA testing to AWS CLI with IAM roles—80% fewer Lambda calls, faster CI/CD, and scalable testing."
     },
@@ -251,6 +254,11 @@ const amazonProjects = [
       title: "Auto Jira MMS Plugin",
       description:
         "AWS Lambda plugin to auto-create/update Jira defects from MMS/TestRail with 70%+ manual effort reduction."
+    },
+    {
+      title: "1P FTV E2E Automation Stabilization",
+      description:
+        "Hardened core libraries and end-to-end use cases for 1P Fire TV; improved automation consumption and utilization across Smart TVs.",
     },
     {
       title: "Automation Consumption for 1P NPI FTV devices",

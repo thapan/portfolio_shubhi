@@ -1,9 +1,142 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import SkillRadarChart from './SkillRadarChart';
+import {
+  Wifi,
+  Zap,
+  Cloud,
+  Code,
+  ClipboardCheck,
+  Brain,
+  Rocket,
+  Users,
+  Settings2,
+  Wrench,
+  GraduationCap,
+  MessageSquare,
+  Terminal,
+  Server,
+  Bug,
+  GitBranch,
+  Bot
+} from 'lucide-react';
 
 export default function SkillsSection() {
-  const [hoveredSkill, setHoveredSkill] = useState(null);
+  const technicalTiles = [
+    {
+      icon: Wifi,
+      title: "Wireless/RF",
+      desc: "RVR/shield-box, sniffer analysis; IxChariot/IxLoad, Wireshark.",
+      anchor: "Projects: Wireless Testing & Packet Debug"
+    },
+    {
+      icon: Zap,
+      title: "Automation",
+      desc: "Frameworks, sanity/stress, router/remote rigs, self-healing prompts.",
+      anchor: "Projects: Automation & Tooling"
+    },
+    {
+      icon: Cloud,
+      title: "Cloud/AWS",
+      desc: "Dial-up/OTA CLI, Jira MMS (Lambda), hotspot Step Functions; Docker/EC2.",
+      anchor: "Projects: Dial-up/OTA CLI, Jira MMS, Hotspot Programs"
+    },
+    {
+      icon: Code,
+      title: "Python",
+      desc: "Scripting, tools, analytics; WLAN sanity automation; ML pipelines.",
+      anchor: "Projects: ML Prioritization, Sanity Automation"
+    },
+    {
+      icon: ClipboardCheck,
+      title: "Testing",
+      desc: "Test planning/strategy from prototype to launch; stress/stability labs, launch gates, regression coverage.",
+      anchor: "Projects: Launch Leadership, Stress & Reliability"
+    },
+    {
+      icon: Brain,
+      title: "ML/Analytics",
+      desc: "Test prioritization, defect analytics, stability metrics.",
+      anchor: "Projects: ML Test Prioritization, Jira metrics"
+    }
+  ];
+
+  const leadershipTiles = [
+    {
+      icon: Rocket,
+      title: "Launch/Program QA",
+      desc: "NPI launches, launch rooms, gates/bug bars.",
+      anchor: "Projects: FTV Launch Leadership"
+    },
+    {
+      icon: Users,
+      title: "Cross-Functional",
+      desc: "PMT/TPM/Eng alignment, customer-impact metrics.",
+      anchor: "Projects: Launch Leadership, Hotspot Programs"
+    },
+    {
+      icon: Settings2,
+      title: "Automation Strategy",
+      desc: "Consumption 30%→90%, scale-up across products.",
+      anchor: "Projects: Smart TV automation, Auto Test Prompt"
+    },
+    {
+      icon: Wrench,
+      title: "Lab/Infra Ops",
+      desc: "Arlington lab stewardship, readiness, utilization.",
+      anchor: "Projects: Launch Leadership, Lab Ops"
+    },
+    {
+      icon: GraduationCap,
+      title: "Coaching/Mentoring",
+      desc: "SDET path, framework hardening with SDE mentors.",
+      anchor: "Projects: Automation & Tooling"
+    },
+    {
+      icon: MessageSquare,
+      title: "Stakeholder Comms",
+      desc: "Status, KPIs, decision gates; exec-ready updates.",
+      anchor: "Projects: Launch Leadership, Device Ownership"
+    }
+  ];
+
+  const toolGroups = [
+    {
+      title: "Wireless/RF & Performance",
+      anchor: "Projects: Wireless Testing & Packet Debug",
+      items: ["Wireshark", "Omnipeek", "tcpdump", "IxLoad/IxChariot/IxNetwork", "Spirent"],
+      icon: Wifi
+    },
+    {
+      title: "Automation & CLI",
+      anchor: "Projects: Automation & Tooling",
+      items: ["Python", "Perl", "Bash", "Arduino rigs", "Router UI scripting", "CLI/SSH debug"],
+      icon: Terminal
+    },
+    {
+      title: "Cloud & Pipelines",
+      anchor: "Projects: Dial-up/OTA CLI, Jira MMS, Hotspot",
+      items: ["AWS (Lambda/Step Functions/EC2)", "Docker", "REST APIs", "Jenkins", "Git/GitHub"],
+      icon: Cloud
+    },
+    {
+      title: "QA & Launch Ops",
+      anchor: "Projects: Launch Leadership",
+      items: ["Jira", "Prism", "Salesforce IR", "Launch gates/bug bars", "Status/KPI dashboards"],
+      icon: Bug
+    },
+    {
+      title: "Lab Ops",
+      anchor: "Projects: Lab Ops & Arlington",
+      items: ["Shield boxes", "Attenuators", "Lab booking", "Mesh/interop labs", "Perf/stability rigs"],
+      icon: Server
+    },
+    {
+      title: "AI Assist & Analytics",
+      anchor: "Projects: ML Prioritization, Jira metrics",
+      items: ["Pandas", "scikit-learn", "SQL", "Amazon Q", "AI code/test assist"],
+      icon: Bot
+    }
+  ];
 
   return (
     <section id="skills" className="pt-20 pb-28 px-6 relative overflow-hidden">
@@ -32,43 +165,54 @@ export default function SkillsSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          <div className="max-w-3xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8">
             <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/40 border border-gray-700/50 backdrop-blur-sm">
-              <SkillRadarChart activeSkill={hoveredSkill} />
-              <p className="text-center text-sm text-gray-500 mt-4">
-                Hover the legend to spotlight a skill; radar shows relative focus across capabilities.
-              </p>
-
-              {/* Legend */}
-              <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-4">
-                {[
-                  { label: "Wireless/RF", desc: "802.11, RVR, Sniffer Analysis" },
-                  { label: "Testing", desc: "Automation, Stress, Regression" },
-                  { label: "Automation", desc: "Framework Design, CI/CD" },
-                  { label: "Python/Perl", desc: "Scripting, Tools, Analytics" },
-                  { label: "Cloud/AWS", desc: "Infrastructure, Scaling" },
-                  { label: "ML/Analytics", desc: "Test Prioritization, Data Analysis" },
-                ].map((item, index) => (
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-semibold text-white">Technical Focus</h3>
+                <span className="text-xs text-gray-500">Projects & tools</span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {technicalTiles.map((item, index) => (
                   <motion.div
-                    key={item.label}
+                    key={item.title}
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    onMouseEnter={() => setHoveredSkill(item.label)}
-                    onMouseLeave={() => setHoveredSkill(null)}
-                    className={`p-3 rounded-xl bg-gray-800/30 border border-gray-700/30 transition-colors group cursor-default ${
-                      hoveredSkill === item.label ? 'border-purple-500/50 bg-gray-800/50' : 'hover:border-purple-500/30'
-                    }`}
+                    transition={{ delay: index * 0.05 }}
+                    className="p-4 rounded-xl bg-gray-800/40 border border-gray-700/40 hover:border-purple-500/40 hover:bg-gray-800/60 transition-colors"
                   >
-                    <div className="flex items-center justify-between mb-1">
-                      <span className={`text-sm font-medium transition-colors ${
-                        hoveredSkill === item.label ? 'text-white' : 'text-gray-300 group-hover:text-white'
-                      }`}>
-                        {item.label}
-                      </span>
+                    <div className="flex items-center gap-2 mb-1">
+                      <item.icon className="w-4 h-4 text-purple-300" />
+                      <div className="text-sm font-semibold text-white">{item.title}</div>
                     </div>
-                    <p className="text-gray-500 text-xs">{item.desc}</p>
+                    <p className="text-xs text-gray-400 mb-2">{item.desc}</p>
+                    <p className="text-[11px] text-purple-300">{item.anchor}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/40 border border-gray-700/50 backdrop-blur-sm">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-semibold text-white">Leadership Focus</h3>
+                <span className="text-xs text-gray-500">Programs & teams</span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {leadershipTiles.map((item, index) => (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    className="p-4 rounded-xl bg-gray-800/40 border border-gray-700/40 hover:border-blue-500/40 hover:bg-gray-800/60 transition-colors"
+                  >
+                    <div className="flex items-center gap-2 mb-1">
+                      <item.icon className="w-4 h-4 text-blue-300" />
+                      <div className="text-sm font-semibold text-white">{item.title}</div>
+                    </div>
+                    <p className="text-xs text-gray-400 mb-2">{item.desc}</p>
+                    <p className="text-[11px] text-blue-300">{item.anchor}</p>
                   </motion.div>
                 ))}
               </div>
@@ -89,130 +233,28 @@ export default function SkillsSection() {
           </h3>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              {
-                title: "Planning & Tracking",
-                items: [
-                  { label: "Jira", url: "https://www.atlassian.com/software/jira" },
-                  { label: "Prism" },
-                  { label: "Salesforce IR", url: "https://www.salesforce.com" }
-                ]
-              },
-              {
-                title: "Version Control & CI/CD",
-                items: [
-                  { label: "Git", url: "https://git-scm.com" },
-                  { label: "Jenkins", url: "https://www.jenkins.io" }
-                ]
-              },
-              {
-                title: "Cloud & Containers",
-                items: [
-                  { label: "AWS", url: "https://aws.amazon.com" },
-                  { label: "Docker", url: "https://www.docker.com" }
-                ]
-              },
-              {
-                title: "Wi-Fi/Mesh & Performance",
-                items: [
-                  { label: "Wireshark", url: "https://www.wireshark.org" },
-                  { label: "Omnipeek", url: "https://www.liveaction.com/products/omnipeek/" },
-                  { label: "Ixia IxLoad", url: "https://www.keysight.com/us/en/products/network-test/ixload.html" },
-                  { label: "IxChariot", url: "https://www.keysight.com/us/en/products/network-test/ixchariot.html" },
-                  { label: "IxNetwork", url: "https://www.keysight.com/us/en/products/network-test/ixnetwork.html" },
-                  { label: "Iperf", url: "https://iperf.fr" },
-                  { label: "Spirent", url: "https://www.spirent.com" },
-                  { label: "tcpdump", url: "https://www.tcpdump.org" },
-                  { label: "Mesh testbeds" },
-                  { label: "Performance regression suites" },
-                  { label: "Interop labs" }
-                ]
-              },
-              {
-                title: "RF/Lab",
-                items: [
-                  { label: "Attenuators" },
-                  { label: "Shield Boxes" }
-                ]
-              },
-              {
-                title: "Terminals & Utilities",
-                items: [
-                  { label: "Tera Term", url: "https://osdn.net/projects/ttssh2/releases/" },
-                  { label: "PuTTY", url: "https://www.putty.org" },
-                  { label: "CLI/SSH debug" }
-                ]
-              },
-              {
-                title: "App/Web/Playback QA",
-                items: [
-                  { label: "Selenium", url: "https://www.selenium.dev" },
-                  { label: "API testing", url: "https://restfulapi.net" },
-                  { label: "Playback/streaming labs" },
-                  { label: "iOS/Android/Web regressions" },
-                  { label: "Living room/Fire TV validation" }
-                ]
-              },
-              {
-                title: "Languages",
-                items: [
-                  { label: "Python", url: "https://www.python.org" },
-                  { label: "Perl", url: "https://www.perl.org" },
-                  { label: "C", url: "https://en.wikipedia.org/wiki/C_(programming_language)" },
-                  { label: "Bash", url: "https://www.gnu.org/software/bash/" },
-                  { label: "SQL", url: "https://en.wikipedia.org/wiki/SQL" }
-                ]
-              },
-              {
-                title: "Data & ML",
-                items: [
-                  { label: "Pandas", url: "https://pandas.pydata.org" },
-                  { label: "scikit-learn", url: "https://scikit-learn.org" },
-                  { label: "REST APIs", url: "https://restfulapi.net" }
-                ]
-              },
-              {
-                title: "AI Assistants",
-                items: [
-                  { label: "Amazon Q" },
-                  { label: "Prompt engineering" },
-                  { label: "AI code assistants" },
-                  { label: "AI test case generation" },
-                  { label: "LLM-integrated tools" }
-                ]
-              }
-            ].map((group, idx) => (
-              <div key={group.title} className="p-4 rounded-xl bg-gray-800/50 border border-gray-700/50">
-                <h4 className="text-sm font-semibold text-white mb-3">{group.title}</h4>
+            {toolGroups.map((group, idx) => (
+              <div key={group.title} className="p-5 rounded-xl bg-gray-800/50 border border-gray-700/50">
+                <div className="flex items-center gap-2 mb-1">
+                  <group.icon className="w-4 h-4 text-purple-300" />
+                  <h4 className="text-sm font-semibold text-white">{group.title}</h4>
+                </div>
+                <p className="text-[11px] text-purple-300 mb-3">{group.anchor}</p>
                 <div className="flex flex-wrap gap-2">
-                  {group.items.map((tool, index) => {
-                    const content = (
-                      <span className="px-3 py-1.5 rounded-lg bg-gray-900/50 text-gray-300 border border-gray-700/50
-                               hover:border-purple-500/50 hover:text-white hover:bg-gray-800
-                               transition-all duration-200 cursor-pointer text-sm">
-                        {tool.label}
-                      </span>
-                    );
-                    return (
-                      <motion.span
-                        key={tool.label}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: (idx * 0.05) + index * 0.02 }}
-                        whileHover={{ scale: 1.06, y: -1 }}
-                        className="inline-flex"
-                      >
-                        {tool.url ? (
-                          <a href={tool.url} target="_blank" rel="noreferrer">
-                            {content}
-                          </a>
-                        ) : (
-                          content
-                        )}
-                      </motion.span>
-                    );
-                  })}
+                  {group.items.map((label, index) => (
+                    <motion.span
+                      key={`${group.title}-${label}`}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.05 + index * 0.02 }}
+                      className="px-3 py-1.5 rounded-lg bg-gray-900/50 text-gray-300 border border-gray-700/50
+                                 hover:border-purple-500/50 hover:text-white hover:bg-gray-800
+                                 transition-all duration-200 text-sm"
+                    >
+                      {label}
+                    </motion.span>
+                  ))}
                 </div>
               </div>
             ))}

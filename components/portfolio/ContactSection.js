@@ -38,7 +38,7 @@ export default function ContactSection() {
       summary: `Approximate fit: ${score}% based on detected keywords. Prioritize matching must-haves: ${matched.slice(0, 4).join(', ') || 'add role keywords'}.`,
       atsResume: `PROFILE: QA/Automation lead with WLAN/Wi-Fi depth (mesh, gateways), performance/interop testbeds, and automation frameworks.\n` +
         `TOOLS: Python, Perl, Bash, Jenkins/CI, Jira, Wireshark/Omnipeek captures, Ixia IxLoad/IxChariot, RF attenuators/shield boxes, AWS, Docker.\n` +
-        `HIGHLIGHTS: Fire TV connectivity sign-off; max-client/RVR/voice (Alexa) validations; nightly regression and performance suites; multi-client farm automation; ML crash predictor; OTA CLI; Auto Jira.\n` +
+        `HIGHLIGHTS: Fire TV connectivity sign-off; max-client/RVR/voice (Alexa) validations; nightly regression and performance suites; multi-client farm automation; ML crash predictor; dial-up/OTA CLI; Auto Jira.\n` +
         `EXPERIENCE: Qualcomm WLAN QA (chipset releases, stability, captures); Amazon Fire TV (launch leadership, automation, router UI tooling); CDAC ESD.\n` +
         `KEYWORDS MATCHED: ${matched.join(', ') || 'Add role-specific skills'}.`
     });
@@ -97,7 +97,7 @@ export default function ContactSection() {
           >
             <a href={resumeUrl} download>
               <FileText className="mr-2 h-5 w-5" />
-              Download Resume
+              Resume
             </a>
           </Button>
         </motion.div>
