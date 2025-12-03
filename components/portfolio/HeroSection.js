@@ -12,7 +12,7 @@ export default function HeroSection({ onScrollToSection }) {
     "Product Quality Engineer",
     "Automation Architect",
     "Wireless Systems Engineer",
-    "The chaotic explorer"
+    "Chaotic Explorer"
   ];
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
