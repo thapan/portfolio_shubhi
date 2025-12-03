@@ -189,112 +189,76 @@ const qualcommProjects = [
 
 const amazonProjects = [
   {
-    title: "Fire TV launches: connectivity owner",
-    period: "2018-2019",
-    summary: "Connectivity launch owner for sticks/cubes—Wi-Fi/BT/BLE/CoEx quality, OOBE/FFS readiness, Live TV validation.",
-    tech: ["Wi-Fi", "BT", "BLE", "CoEx", "FFS", "Live TV", "Frank", "Dektec"],
-    problem: "Connectivity regressions and Live TV setup risks could delay launches.",
-    solution: "Daily triage/sign-offs; Wi-Fi/BT/BLE/CoEx regressions; OOBE/FFS readiness; Frank/Dektec Live TV validation.",
-    impact: "On-time launches; stable connectivity KPIs; higher Live TV setup success.",
-    listStyle: "ordered",
+    title: "Launch Leadership & Connectivity Ownership",
+    period: "2018-2025",
+    summary: "Connectivity launch owner across Fire TV sticks/cubes—Wi-Fi/BT/BLE/CoEx quality, OOBE/FFS, Live TV, and readiness gates.",
+    tech: ["Wi-Fi", "BT", "BLE", "CoEx", "FFS", "Live TV", "Automation", "SNS"],
+    problem: "Connectivity regressions and Live TV/OOBE risks threatened on-time launches and customer experience.",
+    solution: "Daily triage and sign-offs on Wi-Fi/BT/BLE/CoEx, Live TV validation, stability testbeds, and launch gates across generations.",
+    impact: "Zero critical launch escapes across 5 device launches with higher Live TV setup success and stable KPIs.",
     link: "https://www.amazon.com/dp/B08XVYZ1Y5/ref=tsm_1_fb_lk?th=1",
     imageUrl: fireTvImage,
-    flow: [
-      "Coverage: FTV Stick, Cubes, Remotes",
-      "FTV Regression for Wi-Fi/BT/BLE/CoEx",
-      "Daily status, gates, sign-off"
+    hasDemo: true,
+    details: [
+      {
+        title: "Fire TV launches: connectivity owner",
+        description: "Connectivity lead for sticks/cubes—regressions, OOBE/FFS readiness, Live TV validation with Frank/Dektec.",
+        tech: ["Wi-Fi", "BT", "BLE", "CoEx", "FFS", "Live TV"],
+      },
+      {
+        title: "Device Launch Ownership",
+        description: "Launch readiness and validation gates across 5 device generations; zero critical escapes.",
+        tech: ["Automation", "Sanity", "WLAN", "SNS"],
+      },
+      {
+        title: "Wi-Fi Stability Testbeds",
+        description: "Long-run Wi-Fi stability labs simulating home routers/interference to prevent field issues (60% reduction).",
+        tech: ["WLAN", "Automation", "SNS", "RF"],
+      }
     ]
   },
   {
-    title: "Automation: remotes & routers",
-    period: "2018-2019",
-    summary: "Arduino remote-latency rig + scripted router UI (TP-Link, Netgear) to accelerate connectivity sign-offs.",
-    tech: ["Automation", "Arduino", "Routers"],
-    problem: "Manual remote latency and router reconfig slowed test cycles and risked inconsistency.",
-    solution: "Arduino rig for Snow/Lindberg remotes; scripted router UI for rapid topology changes.",
-    impact: "Release gating on latency KPIs; faster multi-router coverage.",
+    title: "Automation & Tooling for Connectivity",
+    period: "2018-2023",
+    summary: "Built automation stack for remotes/routers, cloud OTA testing, and Jira MMS integration.",
+    tech: ["Automation", "Arduino", "Routers", "AWS", "Python", "CLI", "Jira"],
+    problem: "Manual router changes, remote latency checks, and defect logging slowed sign-offs and added risk.",
+    solution: "Arduino latency rig + router UI scripting, cloud-native OTA CLI workflows, and automated Jira MMS plugin.",
+    impact: "Release gating on latency KPIs, 10x OTA scale at 40% lower cost, and 95% defect accuracy with 15+ hrs/week saved.",
     hasDemo: true,
     demoType: "remote-router",
-    listStyle: "ordered",
-    flow: [
-      "Remote latency automation (Arduino rig for Snow/Lindberg)",
-      "Router UI automation (TP-Link, Netgear, etc.)",
-      "Topology spins for connectivity scenarios",
-      "Faster regression turnaround"
-    ]
+    details: [
+      {
+        title: "Automation: remotes & routers",
+        description: "Arduino remote-latency rig and scripted router UI (TP-Link, Netgear) for rapid topology spins.",
+        tech: ["Automation", "Arduino", "Routers"],
+        demoType: "remote-router",
+      },
+      {
+        title: "OTA CLI Tool",
+        description: "Migrated OTA testing to AWS with CLI-driven provisioning and execution for scale/cost wins.",
+        tech: ["AWS", "Python", "Automation", "CLI"],
+        demoType: "ota-migration",
+      },
+      {
+        title: "Auto Jira MMS Plugin",
+        description: "Auto-create/update Jira tickets from MMS/test results for accurate, low-latency defect tracking.",
+        tech: ["Jira", "Python", "Automation", "AWS"],
+        demoType: "jira-mms",
+      }
+    ],
   },
   {
-    title: "RF lab stewardship & booking",
+    title: "RF Lab Ops & Booking",
     period: "2018-2019",
-    summary: "RF lab ops with RVR/perf/stress setups + booking tool to avoid conflicts and maximize utilization.",
+    summary: "RF lab stewardship with RVR/perf/stress setups and a booking tool to keep runs conflict-free.",
     tech: ["RF", "RVR", "Perf", "Stress", "Scheduling"],
     problem: "Shared labs caused conflicts and inconsistent environments for reproducible connectivity testing.",
-    solution: "Maintained shield rooms/RF boxes, calibrated rigs, built booking tool with conflict checks.",
+    solution: "Maintained shield rooms/RF boxes, calibrated rigs, and built a booking tool with conflict checks.",
     impact: "Higher lab throughput and reproducible runs.",
     hasDemo: true,
     demoType: "lab-ops",
     listStyle: "ordered",
-    flow: [
-      "Lab stewardship: shield rooms/RF boxes",
-      "RVR/perf/stress configurations",
-      "Conflict-free booking and scheduling",
-      "Ready-to-run environments for teams"
-    ]
-  },
-  {
-    title: "OTA CLI Tool",
-    period: "2020-2022",
-    summary: "Led migration of Over-The-Air update testing to cloud-based AWS infrastructure with CLI tooling.",
-    tech: ["AWS", "Python", "Automation", "CLI"],
-    problem: "Legacy OTA testing infrastructure was difficult to scale and maintain.",
-    solution: "Architected cloud-native OTA testing platform with automated provisioning and CLI-driven workflows.",
-    impact: "10x scalability improvement with 40% cost reduction through cloud optimization.",
-    hasDemo: true,
-    demoType: "ota-migration",
-    metrics: [
-      { value: "10x", label: "Scalability" },
-      { value: "40%", label: "Cost Saved" },
-      { value: "100+", label: "Devices/Day" },
-      { value: "Zero", label: "Manual Steps" }
-    ]
-  },
-  {
-    title: "Auto Jira MMS Plugin",
-    period: "2021-2023",
-    summary: "Developed automated Jira integration for test management system enabling seamless defect tracking.",
-    tech: ["Jira", "Python", "Automation", "AWS"],
-    problem: "Manual defect logging from test results was time-consuming and error-prone.",
-    solution: "Built plugin to automatically create, update, and link Jira tickets from test execution results.",
-    impact: "Saved 15+ hours per week across team and improved defect tracking accuracy by 95%.",
-    hasDemo: true,
-    demoType: "jira-mms",
-    flow: ["Test Failure", "Auto-Capture", "Jira Create", "Link & Notify"],
-    metrics: [
-      { value: "95%", label: "Defect accuracy" },
-      { value: "15+ hrs", label: "Saved weekly" },
-      { value: "<1 min", label: "Ticket latency" },
-      { value: "0", label: "Manual fields" }
-    ]
-  },
-  {
-    title: "Wi-Fi Stability Testbeds",
-    period: "2020-2024",
-    summary: "Designed and maintained Wi-Fi stability testbeds for Fire TV connectivity validation.",
-    tech: ["WLAN", "Automation", "SNS", "RF"],
-    problem: "Fire TV devices needed reliable Wi-Fi across diverse home network conditions.",
-    solution: "Built comprehensive testbed simulating various router configurations, interference patterns, and network conditions.",
-    impact: "Reduced field Wi-Fi issues by 60% through proactive lab detection.",
-    flow: ["Environment Setup", "Scenario Config", "Long-run Test", "Issue Analysis"]
-  },
-  {
-    title: "Device Launch Ownership",
-    period: "2022-2025",
-    summary: "Led quality validation and launch readiness for multiple Fire TV device generations.",
-    tech: ["Automation", "Sanity", "WLAN", "SNS"],
-    problem: "Device launches required coordination across multiple validation streams with tight timelines.",
-    solution: "Established launch readiness criteria, automated validation gates, and cross-functional coordination processes.",
-    impact: "Zero critical launch escapes across 5 device launches with improved time-to-market.",
-    flow: ["Feature Lock", "Validation", "Bug Bar", "Launch Gate", "Monitor"]
   }
 ];
 

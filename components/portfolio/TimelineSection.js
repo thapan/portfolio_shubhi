@@ -16,7 +16,7 @@ const timelineData = [
     ]
   },
   {
-    company: "Amazon",
+    company: "Amazon, India & USA",
     role: "Fire TV & Connectivity Engineer",
     period: "2018 - Present",
     icon: Tv,
@@ -31,41 +31,39 @@ const timelineData = [
     ]
   },
   {
-    company: "Qualcomm",
-    role: "WLAN Quality Engineer",
-    period: "2015 - 2018",
-    icon: Building2,
-    color: "purple",
-    highlights: [
-      "100+ chipset releases delivered across 802.11 a/b/g/n/ac/ad",
-      "Built Python sanity/stress automation and multi-client farm (150+ devices)",
-      "Developed ML-based crash predictor to prioritize stability tests",
-      "Led max-client, RVR, and voice/Alexa WLAN validations; drove bug closure via Jira/Prism/IR"
-    ]
-  },
+  company: "Qualcomm, India",
+  role: "Sr. Software Engineer • WLAN Validation & Automation",
+  period: "2015 - 2018",
+  icon: Building2,
+  color: "purple",
+  highlights: [
+  "QCA Sanity & WLAN Validation",
+  "Automation",
+  "Stress and Stability Testing",
+  "Power Line Communication (PLC) Testing"
+]
+},
+
   {
-    company: "CDAC",
+    company: "CDAC, India",
     role: "PG Diploma • Embedded System Design",
     period: "2014 - 2015",
     icon: Building2,
     color: "purple",
     highlights: [
-      "Embedded systems design and firmware foundations",
-      "Microcontrollers, RTOS, and interfacing projects",
-      "Built capstone around end-to-end embedded stack"
-    ]
+      "Embedded Systems & Firmware",
+]
   },
   {
-    company: "Bachelor of Engineering",
-    role: "Electronics & Communication",
-    period: "2009 - 2013",
-    icon: Building2,
-    color: "purple",
-    highlights: [
-      "Electronics fundamentals: signals, circuits, communications",
-      "Projects in embedded/communication systems"
-    ]
-  },
+  company: "Bachelor of Engineering, JSSATE, India",
+  role: "Electronics & Communication",
+  period: "2009 - 2013",
+  icon: Building2,
+  color: "purple",
+  highlights: [
+    "GSM-based IoT Appliance Control (Smart Home)"
+  ]
+},
   {
     company: "Born",
     icon: Building2,
