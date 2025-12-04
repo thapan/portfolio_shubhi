@@ -469,6 +469,7 @@ function ContactSection() {
 
 function ChatBotBeta() {
   const [open, setOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
   const [input, setInput] = useState("");
   const [phase, setPhase] = useState("ready"); // ready | responding
   const [replyCount, setReplyCount] = useState(0);
@@ -510,6 +511,15 @@ function ChatBotBeta() {
     return "I’m here to help—ask about integrations, pricing/quote acceleration, marketplace builds, team leadership, or AI/automation. If you share a scenario, I’ll tailor a suggestion.";
   };
 
+  const softClose = () => {
+    if (!open || closing) return;
+    setClosing(true);
+    setTimeout(() => {
+      setOpen(false);
+      setClosing(false);
+    }, 220);
+  };
+
   const sendMessage = (text) => {
     const trimmed = text.trim();
     if (!trimmed || phase === "responding") return;
@@ -531,9 +541,19 @@ function ChatBotBeta() {
     return () => clearTimeout(initial);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 500 && open) {
+        softClose();
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [open, closing]);
+
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      {!open && (
+      {!open && !closing && (
         <button
           onClick={() => setOpen(true)}
           className="flex items-center gap-2 px-4 py-2 rounded-full bg-black text-white shadow-lg hover:scale-[1.02] transition"
@@ -542,14 +562,18 @@ function ChatBotBeta() {
         </button>
       )}
 
-      {open && (
-        <div className="w-80 md:w-96 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
+      {(open || closing) && (
+        <div
+          className={`w-80 md:w-96 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300 ease-out ${
+            closing ? "opacity-0 translate-y-2 pointer-events-none" : "opacity-100 translate-y-0"
+          }`}
+        >
           <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-slate-50">
             <div className="flex items-center gap-2">
               <span className="text-sm font-semibold text-slate-800">Ask Me (Beta)</span>
               <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-900 text-white">AI</span>
             </div>
-            <button className="text-slate-500 hover:text-slate-900" onClick={() => setOpen(false)}>
+            <button className="text-slate-500 hover:text-slate-900" onClick={softClose}>
               <X size={18} />
             </button>
           </div>
