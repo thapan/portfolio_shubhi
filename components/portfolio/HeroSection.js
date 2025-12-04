@@ -11,7 +11,7 @@ export default function HeroSection({ onScrollToSection }) {
   const typingPhrases = [
     "Automation Architect",
     "Product QA Lead",
-    "Wireless Systems Engineer"
+    "WLAN QA Engineer"
   ];
   const achievements = [
     "Automation modernization + velocity gains",
