@@ -218,7 +218,6 @@ function ExperienceSection() {
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
           <span className="inline-block px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 text-sm font-semibold mb-4">Career Journey</span>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Professional Experience</h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto">14+ years leading software development and enterprise architecture in insurance</p>
         </motion.div>
 
         <div className="space-y-8">
