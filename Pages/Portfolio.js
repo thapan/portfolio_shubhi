@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { 
   Mail, 
@@ -470,7 +470,6 @@ function ContactSection() {
 function ChatBotBeta() {
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
-  const [input, setInput] = useState("");
   const [phase, setPhase] = useState("ready"); // ready | responding
   const [replyCount, setReplyCount] = useState(0);
   const coreSummary =
@@ -481,6 +480,29 @@ function ChatBotBeta() {
       text: "Hi, I’m your beta assistant. Ask about my experience, where I can help, or a project scenario.",
     },
   ]);
+
+  const quickOptions = [
+    { label: "Experience summary", prompt: "Give me your experience summary" },
+    { label: "Integrations/APIs", prompt: "What integrations and APIs have you led?" },
+    { label: "Pricing & quote", prompt: "Tell me about pricing and quote acceleration work" },
+    { label: "Data & reporting", prompt: "Tell me about data/reporting and external data work" },
+    { label: "Team leadership", prompt: "What is your team leadership experience?" },
+    { label: "AI & automation", prompt: "Tell me about AI or chatbot work you’ve done" },
+    { label: "How you can help", prompt: "How can you help on a project?" },
+  ];
+
+  const messagesEndRef = useRef(null);
+
+  const resetChat = () => {
+    setMessages([
+      {
+        role: "assistant",
+        text: "Hi, I’m your beta assistant. Ask about my experience, where I can help, or a project scenario.",
+      },
+    ]);
+    setReplyCount((c) => c + 1);
+    setPhase("ready");
+  };
 
   const buildReply = (text) => {
     const q = text.toLowerCase();
@@ -527,7 +549,6 @@ function ChatBotBeta() {
     if (!trimmed || phase === "responding") return;
     const userMessage = { role: "user", text: trimmed };
     setMessages((prev) => [...prev, userMessage]);
-    setInput("");
     setPhase("responding");
     const reply = buildReply(trimmed);
 
@@ -543,14 +564,20 @@ function ChatBotBeta() {
     return () => clearTimeout(initial);
   }, []);
 
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, replyCount, open]);
+
   return (
     <div className="fixed bottom-4 right-4 left-4 md:left-auto md:right-6 z-50">
       {!open && !closing && (
         <button
           onClick={() => setOpen(true)}
-          className="flex items-center gap-2 px-4 py-2 rounded-full bg-black text-white shadow-lg hover:scale-[1.02] transition text-base"
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-slate-900 to-slate-700 text-white shadow-lg hover:scale-[1.03] transition text-base"
         >
-          Chat (Beta) <span className="text-xs px-2 py-0.5 bg-white/10 rounded-full">AI</span>
+          Chat (Beta) <span className="text-xs px-2 py-0.5 bg-white/15 rounded-full">AI</span>
         </button>
       )}
 
@@ -560,17 +587,23 @@ function ChatBotBeta() {
             closing ? "opacity-0 translate-y-2 pointer-events-none" : "opacity-100 translate-y-0"
           }`}
         >
-          <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-slate-50">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white">
             <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-slate-800">Ask Me (Beta)</span>
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-900 text-white">AI</span>
+              <span className="text-sm font-semibold">Ask Me (Beta)</span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/15">AI</span>
             </div>
-            <button className="text-slate-500 hover:text-slate-900" onClick={softClose}>
-              <X size={18} />
-            </button>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span>
+                Live
+              </span>
+              <button className="text-white/80 hover:text-white" onClick={softClose}>
+                <X size={18} />
+              </button>
+            </div>
           </div>
 
-          <div className="max-h-64 overflow-y-auto p-4 space-y-3">
+          <div className="max-h-64 overflow-y-auto p-4 space-y-3 bg-white transition-all duration-200">
             {messages.map((msg, idx) => (
               <div key={`${idx}-${replyCount}`} className={`text-sm leading-relaxed ${msg.role === "assistant" ? "text-slate-800" : "text-slate-700 text-right"}`}>
                 <div
@@ -586,32 +619,36 @@ function ChatBotBeta() {
                 </div>
               </div>
             ))}
+            {phase === "responding" && (
+              <div className="flex items-center gap-2 text-[11px] text-slate-500">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Typing…
+              </div>
+            )}
+            <div ref={messagesEndRef} />
           </div>
 
-          <div className="border-t border-slate-200 p-3">
-            <form
-              className="flex items-center gap-2"
-              onSubmit={(e) => {
-                e.preventDefault();
-                sendMessage(input);
-              }}
-            >
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about my experience..."
-                className="flex-1 border border-slate-200 rounded-full px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-slate-300"
-                inputMode="text"
-                autoComplete="off"
-              />
-              <button
-                type="submit"
-                className="px-3 py-2 rounded-full bg-slate-900 text-white text-base hover:scale-[1.02] transition"
-              >
-                Send
+          <div className="border-t border-slate-200 p-3 space-y-3 bg-slate-50">
+            <div className="flex items-center justify-between">
+              <p className="text-[11px] text-slate-500">Quick prompts</p>
+              <button onClick={resetChat} className="text-[11px] text-slate-500 hover:text-slate-900">
+                Reset
               </button>
-            </form>
-            <p className="text-[11px] text-slate-400 mt-2">Beta: responses are concise and based on my core experience.</p>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              {quickOptions.map((opt) => (
+                <button
+                  key={opt.label}
+                  onClick={() => sendMessage(opt.prompt)}
+                  className="px-3 py-2 rounded-xl bg-white text-slate-900 text-sm border border-slate-200 hover:border-slate-300 hover:shadow-sm transition text-left"
+                  disabled={phase === "responding"}
+                  aria-label={opt.prompt}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+            <p className="text-[11px] text-slate-400">Beta: responses are concise and based on my core experience.</p>
           </div>
         </div>
       )}
