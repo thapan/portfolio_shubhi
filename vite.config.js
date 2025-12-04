@@ -8,6 +8,8 @@ export default defineConfig({
       include: [/\.jsx?$/, /\.tsx?$/],
     }),
   ],
+  // GH Pages site lives under /portfolio_shubhi/
+  base: "/portfolio_shubhi/",
   esbuild: {
     loader: "jsx",
     include: /.*\.[jt]sx?$/,
