@@ -12,7 +12,7 @@ const navItems = [
   { label: 'Contact', href: '#contact', icon: Mail },
 ];
 
-const RESUME_URL = `${import.meta.env.BASE_URL}shubham_thapan_resume.pdf`;
+const RESUME_URL = `${import.meta.env.BASE_URL}shubham_resume.pdf`;
 
 export default function Layout({ children }) {
   const [isScrolled, setIsScrolled] = useState(false);

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Mail, Linkedin, FileText, Send } from 'lucide-react';
 
 export default function ContactSection() {
-  const resumeUrl = `${import.meta.env.BASE_URL}shubham_thapan_resume.pdf`;
+  const resumeUrl = `${import.meta.env.BASE_URL}shubham_resume.pdf`;
   const [jdText, setJdText] = useState('');
   const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(false);
