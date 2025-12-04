@@ -484,29 +484,31 @@ function ChatBotBeta() {
 
   const buildReply = (text) => {
     const q = text.toLowerCase();
-    if (q.includes("year")) {
+    const has = (words) => words.some((w) => q.includes(w));
+
+    if (has(["hello", "hi", "hey", "greetings"])) {
+      return "Hello! I’m here to help. Ask about my experience, integrations, pricing work, team leadership, or how I can support your project.";
+    }
+    if (has(["year", "experience", "exp", "background"])) {
       return "I bring 14+ years across commercial and personal insurance, with deep delivery on Microsoft stack microservices, APIs, and marketplace products.";
     }
-    if (q.includes("duck") || q.includes("api")) {
-      return "I’ve led Duck Creek headless/Anywhere integrations, Azure APIM onboarding, and marketplace flows—comfortable with session mgmt, native scripts, and cross-system orchestration.";
+    if (has(["duck", "api", "integration", "gateway", "apim"])) {
+      return "I’ve led Duck Creek headless/Anywhere integrations, Azure APIM onboarding, and marketplace flows—comfortable with session management, native scripts, and cross-system orchestration.";
     }
-    if (q.includes("pricing") || q.includes("offer")) {
-      return "Built pricing-on-the-glass, scalable offer/pricing frameworks, appetite extensions, and improved quote times from ~30s to ~5s.";
+    if (has(["pricing", "offer", "quote", "fastpath", "bop"])) {
+      return "Built pricing-on-the-glass, scalable offer/pricing frameworks, appetite extensions, and cut quote times (e.g., ~30s to ~5s).";
     }
-    if (q.includes("report") || q.includes("data") || q.includes("etl") || q.includes("analytics")) {
+    if (has(["report", "data", "etl", "analytics", "lexis", "b360", "elias", "bureau", "wip", "qlik", "gdp", "icc"])) {
       return "Worked with Client WIP, ICC, GDP, Qlik reporting, and external data ingestions (LexisNexis, B360, Elias, bureau reports) to make data usable across the enterprise.";
     }
-    if (q.includes("team") || q.includes("lead") || q.includes("manage")) {
+    if (has(["team", "lead", "manage", "coach", "mentor"])) {
       return "I coach and lead teams (15+), partner from shaping requirements to delivery, and keep quality high with testing (xUnit/Prodigy) and code reviews.";
     }
-    if (q.includes("ai") || q.includes("gpt") || q.includes("chatbot")) {
+    if (has(["ai", "gpt", "chatbot", "ml"])) {
       return "I built a GPT-based chatbot POC and look for opportunities to apply AI to real pain points—happy to explore practical AI fits for your product.";
     }
-    if (q.includes("help") || q.includes("how")) {
+    if (has(["help", "how", "support", "need", "project"])) {
       return "I can help with architecture, integrations, marketplace/product builds, pricing engines, performance tuning, and partnering with business to deliver safely.";
-    }
-    if (q.includes("hello") || q.includes("hi") || q.includes("hey")) {
-      return "Hello! I’m here to help. Ask about my experience, integrations, pricing work, team leadership, or how I can support your project.";
     }
     return "I’m here to help—ask about integrations, pricing/quote acceleration, marketplace builds, team leadership, or AI/automation. If you share a scenario, I’ll tailor a suggestion.";
   };
