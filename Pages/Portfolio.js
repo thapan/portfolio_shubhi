@@ -5,6 +5,7 @@ import {
   Phone, 
   MapPin, 
   Linkedin, 
+  Download,
   ChevronDown,
   Award,
   GraduationCap,
@@ -416,6 +417,7 @@ function AccomplishmentsSection() {
 function ContactSection() {
   const contactInfo = [
     { icon: Mail, label: "Email", value: "shubhi.chemengg@gmail.com", href: "mailto:shubhi.chemengg@gmail.com", color: "from-[#ea4335] to-[#c5221f]" },
+    { icon: Download, label: "Resume", value: "Download Resume", href: `${import.meta.env.BASE_URL}assets/shubhi_resume.pdf`, color: "from-slate-800 to-slate-600" },
     { icon: Linkedin, label: "LinkedIn", value: "Connect on LinkedIn", href: "https://linkedin.com/in/shubhi-thapan", color: "from-[#0a66c2] to-[#0a66c2]" }
   ];
 
