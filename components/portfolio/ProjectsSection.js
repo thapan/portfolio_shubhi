@@ -355,17 +355,17 @@ export default function ProjectsSection() {
             Featured <span className="text-purple-400">Projects</span>
           </h2>
           <div className="mt-8">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="inline-flex">
-              <TabsList className="bg-gray-800/50 border border-gray-700/50 p-1">
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-md mx-auto">
+              <TabsList className="bg-gray-800/50 border border-gray-700/50 p-1 grid grid-cols-2">
                 <TabsTrigger
                   value="amazon"
-                  className="data-[state=active]:bg-blue-600 data-[state=active]:text-white px-6 py-2"
+                  className="data-[state=active]:bg-blue-600 data-[state=active]:text-white px-4 py-2 text-sm md:text-base rounded-lg"
                 >
                   Amazon (2018-Present)
                 </TabsTrigger>
                 <TabsTrigger
                   value="qualcomm"
-                  className="data-[state=active]:bg-purple-600 data-[state=active]:text-white px-6 py-2"
+                  className="data-[state=active]:bg-purple-600 data-[state=active]:text-white px-4 py-2 text-sm md:text-base rounded-lg"
                 >
                   Qualcomm (2015-2018)
                 </TabsTrigger>
