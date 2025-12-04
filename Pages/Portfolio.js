@@ -541,16 +541,6 @@ function ChatBotBeta() {
     return () => clearTimeout(initial);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 500 && open) {
-        softClose();
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [open, closing]);
-
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {!open && !closing && (
