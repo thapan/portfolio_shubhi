@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { 
   Mail, 
@@ -467,6 +467,140 @@ function ContactSection() {
   );
 }
 
+function ChatBotBeta() {
+  const [open, setOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const [phase, setPhase] = useState("ready"); // ready | responding
+  const [replyCount, setReplyCount] = useState(0);
+  const coreSummary =
+    "14+ years modernizing insurance platforms on the Microsoft stack—microservices, API integrations (Duck Creek headless/Anywhere, Azure APIM), marketplace builds, pricing/offer frameworks, and data/reporting flows.";
+  const [messages, setMessages] = useState([
+    {
+      role: "assistant",
+      text: "Hi, I’m your beta assistant. Ask about my experience, where I can help, or a project scenario.",
+    },
+  ]);
+
+  const buildReply = (text) => {
+    const q = text.toLowerCase();
+    if (q.includes("year")) {
+      return "I bring 14+ years across commercial and personal insurance, with deep delivery on Microsoft stack microservices, APIs, and marketplace products.";
+    }
+    if (q.includes("duck") || q.includes("api")) {
+      return "I’ve led Duck Creek headless/Anywhere integrations, Azure APIM onboarding, and marketplace flows—comfortable with session mgmt, native scripts, and cross-system orchestration.";
+    }
+    if (q.includes("pricing") || q.includes("offer")) {
+      return "Built pricing-on-the-glass, scalable offer/pricing frameworks, appetite extensions, and improved quote times from ~30s to ~5s.";
+    }
+    if (q.includes("report") || q.includes("data") || q.includes("etl") || q.includes("analytics")) {
+      return "Worked with Client WIP, ICC, GDP, Qlik reporting, and external data ingestions (LexisNexis, B360, Elias, bureau reports) to make data usable across the enterprise.";
+    }
+    if (q.includes("team") || q.includes("lead") || q.includes("manage")) {
+      return "I coach and lead teams (15+), partner from shaping requirements to delivery, and keep quality high with testing (xUnit/Prodigy) and code reviews.";
+    }
+    if (q.includes("ai") || q.includes("gpt") || q.includes("chatbot")) {
+      return "I built a GPT-based chatbot POC and look for opportunities to apply AI to real pain points—happy to explore practical AI fits for your product.";
+    }
+    if (q.includes("help") || q.includes("how")) {
+      return "I can help with architecture, integrations, marketplace/product builds, pricing engines, performance tuning, and partnering with business to deliver safely.";
+    }
+    if (q.includes("hello") || q.includes("hi") || q.includes("hey")) {
+      return "Hello! I’m here to help. Ask about my experience, integrations, pricing work, team leadership, or how I can support your project.";
+    }
+    return "I’m here to help—ask about integrations, pricing/quote acceleration, marketplace builds, team leadership, or AI/automation. If you share a scenario, I’ll tailor a suggestion.";
+  };
+
+  const sendMessage = (text) => {
+    const trimmed = text.trim();
+    if (!trimmed || phase === "responding") return;
+    const userMessage = { role: "user", text: trimmed };
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
+    setPhase("responding");
+    const reply = buildReply(trimmed);
+
+    setTimeout(() => {
+      setMessages((prev) => [...prev, { role: "assistant", text: reply }]);
+      setPhase("ready");
+      setReplyCount((c) => c + 1);
+    }, 220 + Math.min(600, reply.length * 2));
+  };
+
+  useEffect(() => {
+    const initial = setTimeout(() => setOpen(true), 1200);
+    return () => clearTimeout(initial);
+  }, []);
+
+  return (
+    <div className="fixed bottom-6 right-6 z-50">
+      {!open && (
+        <button
+          onClick={() => setOpen(true)}
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-black text-white shadow-lg hover:scale-[1.02] transition"
+        >
+          Chat (Beta) <span className="text-xs px-2 py-0.5 bg-white/10 rounded-full">AI</span>
+        </button>
+      )}
+
+      {open && (
+        <div className="w-80 md:w-96 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-slate-50">
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-semibold text-slate-800">Ask Me (Beta)</span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-900 text-white">AI</span>
+            </div>
+            <button className="text-slate-500 hover:text-slate-900" onClick={() => setOpen(false)}>
+              <X size={18} />
+            </button>
+          </div>
+
+          <div className="max-h-64 overflow-y-auto p-4 space-y-3">
+            {messages.map((msg, idx) => (
+              <div key={`${idx}-${replyCount}`} className={`text-sm leading-relaxed ${msg.role === "assistant" ? "text-slate-800" : "text-slate-700 text-right"}`}>
+                <div
+                  className={`inline-block rounded-xl px-3 py-2 ${
+                    msg.role === "assistant" ? "bg-slate-50 border border-slate-200 text-left" : "bg-slate-900 text-white text-left"
+                  }`}
+                >
+                  {msg.text.split("\n").map((line, i) => (
+                    <p key={i} className="whitespace-pre-line">
+                      {line}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="border-t border-slate-200 p-3">
+            <div className="flex items-center gap-2">
+              <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    sendMessage(input);
+                  }
+                }}
+                placeholder="Ask about my experience..."
+                className="flex-1 border border-slate-200 rounded-full px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-300"
+              />
+              <button
+                onClick={() => sendMessage(input)}
+                className="px-3 py-2 rounded-full bg-slate-900 text-white text-sm hover:scale-[1.02] transition"
+              >
+                Send
+              </button>
+            </div>
+            <p className="text-[11px] text-slate-400 mt-2">Beta: responses are concise and based on my core experience.</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // Main Portfolio Component
 export default function Portfolio() {
   return (
@@ -481,6 +615,7 @@ export default function Portfolio() {
         <AccomplishmentsSection />
         <ContactSection />
       </main>
+      <ChatBotBeta />
       <footer className="bg-slate-900 text-slate-400 py-8 border-t border-slate-800">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-sm">© {new Date().getFullYear()} Shubhi Thapan. All rights reserved.</p>
