@@ -587,26 +587,28 @@ function ChatBotBeta() {
           </div>
 
           <div className="border-t border-slate-200 p-3">
-            <div className="flex items-center gap-2">
+            <form
+              className="flex items-center gap-2"
+              onSubmit={(e) => {
+                e.preventDefault();
+                sendMessage(input);
+              }}
+            >
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
-                    sendMessage(input);
-                  }
-                }}
                 placeholder="Ask about my experience..."
                 className="flex-1 border border-slate-200 rounded-full px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-slate-300"
+                inputMode="text"
+                autoComplete="off"
               />
               <button
-                onClick={() => sendMessage(input)}
+                type="submit"
                 className="px-3 py-2 rounded-full bg-slate-900 text-white text-base hover:scale-[1.02] transition"
               >
                 Send
               </button>
-            </div>
+            </form>
             <p className="text-[11px] text-slate-400 mt-2">Beta: responses are concise and based on my core experience.</p>
           </div>
         </div>
