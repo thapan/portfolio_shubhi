@@ -1,19 +1,17 @@
 {
-  "name": "mywebsite",
-  "version": "0.0.0",
+  "name": "shubhi_website",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node ./node_modules/vite/bin/vite.js",
-    "build": "node ./node_modules/vite/bin/vite.js build",
-    "preview": "node ./node_modules/vite/bin/vite.js preview"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "framer-motion": "10.12.16",
-    "lucide-react": "0.276.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-router-dom": "6.14.1",
-    "recharts": "2.6.2"
+    "framer-motion": "^10.12.16",
+    "lucide-react": "^0.276.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.0.0",

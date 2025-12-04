@@ -1,0 +1,31 @@
+{
+  "name": "Certificate",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Name of the certificate"
+    },
+    "issuer": {
+      "type": "string",
+      "description": "Organization that issued the certificate"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the certificate was issued"
+    },
+    "url": {
+      "type": "string",
+      "description": "URL to view the certificate"
+    },
+    "icon": {
+      "type": "string",
+      "description": "A slug for a Lucide icon (e.g., 'award', 'shield-check')"
+    }
+  },
+  "required": [
+    "title",
+    "issuer"
+  ]
+}

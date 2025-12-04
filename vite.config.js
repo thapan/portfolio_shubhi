@@ -1,27 +1,24 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
-// https://vitejs.dev/config/
+// Configure Vite to handle JSX in .js files used throughout the project.
 export default defineConfig({
   plugins: [
     react({
-      // Enable JSX in .js files since the project uses that convention
       include: [/\.jsx?$/, /\.tsx?$/],
     }),
   ],
-  // Match GitHub Pages repo name for correct asset paths
-  base: "/thapanatwork/",
   esbuild: {
     loader: "jsx",
     include: /.*\.[jt]sx?$/,
     exclude: [/node_modules/, /vite\.config\.js/],
   },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname),
-      '@/components': path.resolve(__dirname, 'components'),
-      '@/components/portfolio': path.resolve(__dirname, 'components/portfolio')
-    }
-  }
-})
+  // Ensure dependency optimizer treats .js files as JSX (needed for Layout.js, etc.)
+  optimizeDeps: {
+    esbuildOptions: {
+      loader: {
+        ".js": "jsx",
+      },
+    },
+  },
+});

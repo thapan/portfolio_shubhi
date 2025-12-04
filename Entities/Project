@@ -1,0 +1,37 @@
+{
+  "name": "Project",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Project title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Project description"
+    },
+    "tech_stack": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Technologies used"
+    },
+    "github_url": {
+      "type": "string",
+      "description": "GitHub repository URL"
+    },
+    "live_url": {
+      "type": "string",
+      "description": "Live demo URL"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Project screenshot URL"
+    }
+  },
+  "required": [
+    "title",
+    "description"
+  ]
+}
