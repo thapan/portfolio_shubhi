@@ -354,13 +354,6 @@ export default function ProjectsSection() {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Featured <span className="text-purple-400">Projects</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-2">
-            Click on any project to explore the full story
-          </p>
-          <p className="text-emerald-400 text-sm">
-            ✨ Projects with "Interactive Demo" badges include live visualizations
-          </p>
-
           <div className="mt-8">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="inline-flex">
               <TabsList className="bg-gray-800/50 border border-gray-700/50 p-1">
