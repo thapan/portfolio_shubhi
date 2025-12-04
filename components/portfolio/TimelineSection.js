@@ -14,7 +14,7 @@ const timelineData = [
     ]
   },
   {
-    company: "Amazon, India & USA",
+    company: "Amazon Lab126, India & USA",
     role: "Product QA & Automation Lead (Fire TV)",
     period: "2018 - Present",
     icon: Tv,

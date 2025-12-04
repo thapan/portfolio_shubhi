@@ -361,7 +361,7 @@ export default function ProjectsSection() {
                   value="amazon"
                   className="data-[state=active]:bg-blue-600 data-[state=active]:text-white px-4 py-2 text-sm md:text-base rounded-lg"
                 >
-                  Amazon (2018-Present)
+                  Amazon Lab126 (2018-Present)
                 </TabsTrigger>
                 <TabsTrigger
                   value="qualcomm"

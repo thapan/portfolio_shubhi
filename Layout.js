@@ -17,10 +17,18 @@ const RESUME_URL = `${import.meta.env.BASE_URL}shubham_thapan_resume.pdf`;
 export default function Layout({ children }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop || document.body.scrollTop;
+      const scrollHeight = doc.scrollHeight - doc.clientHeight;
+      const progress = scrollHeight > 0 ? Math.min(100, (scrollTop / scrollHeight) * 100) : 0;
+      setScrollProgress(progress);
+      setShowBackToTop(scrollTop > 400);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -31,10 +39,11 @@ export default function Layout({ children }) {
     const scrollToSection = () => {
       const element = document.querySelector(href);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const offset = 80;
+        const top = element.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
       }
     };
-    // Defer until after menu closes so overlay doesn't block scroll on mobile
     requestAnimationFrame(() => setTimeout(scrollToSection, 50));
   };
 
@@ -80,6 +89,8 @@ export default function Layout({ children }) {
             : 'bg-transparent'
         }`}
       >
+        {/* Scroll progress bar */}
+        <div className="absolute left-0 top-0 h-0.5 bg-gradient-to-r from-purple-400 to-blue-400" style={{ width: `${scrollProgress}%` }} />
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -162,6 +173,16 @@ export default function Layout({ children }) {
         <Mail className="w-4 h-4" />
         Contact
       </Button>
+
+      {/* Back to top */}
+      {showBackToTop && (
+        <Button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-6 left-6 z-40 bg-gray-800/80 hover:bg-gray-800 text-gray-100 border border-gray-700/50 px-3 py-2 rounded-full hidden sm:inline-flex items-center gap-2"
+        >
+          ↑ Top
+        </Button>
+      )}
     </div>
   );
 }

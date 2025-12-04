@@ -153,7 +153,7 @@ export default function HeroSection({ onScrollToSection }) {
           <div className="flex items-center gap-2 text-sm text-gray-400">
             <BadgeCheck className="w-4 h-4 text-emerald-300" />
             <span className="font-semibold text-white">Worked with:</span>
-            <span className="px-2 py-1 rounded-full bg-gray-900/70 border border-gray-700 text-gray-200">Amazon</span>
+            <span className="px-2 py-1 rounded-full bg-gray-900/70 border border-gray-700 text-gray-200">Amazon Lab126</span>
             <span className="px-2 py-1 rounded-full bg-gray-900/70 border border-gray-700 text-gray-200">Qualcomm</span>
           </div>
         </motion.div>
