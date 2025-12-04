@@ -542,11 +542,11 @@ function ChatBotBeta() {
   }, []);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-4 left-4 md:left-auto md:right-6 z-50">
       {!open && !closing && (
         <button
           onClick={() => setOpen(true)}
-          className="flex items-center gap-2 px-4 py-2 rounded-full bg-black text-white shadow-lg hover:scale-[1.02] transition"
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-black text-white shadow-lg hover:scale-[1.02] transition text-base"
         >
           Chat (Beta) <span className="text-xs px-2 py-0.5 bg-white/10 rounded-full">AI</span>
         </button>
@@ -554,7 +554,7 @@ function ChatBotBeta() {
 
       {(open || closing) && (
         <div
-          className={`w-80 md:w-96 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300 ease-out ${
+          className={`w-full max-w-md md:w-96 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300 ease-out ${
             closing ? "opacity-0 translate-y-2 pointer-events-none" : "opacity-100 translate-y-0"
           }`}
         >
@@ -598,11 +598,11 @@ function ChatBotBeta() {
                   }
                 }}
                 placeholder="Ask about my experience..."
-                className="flex-1 border border-slate-200 rounded-full px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-300"
+                className="flex-1 border border-slate-200 rounded-full px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-slate-300"
               />
               <button
                 onClick={() => sendMessage(input)}
-                className="px-3 py-2 rounded-full bg-slate-900 text-white text-sm hover:scale-[1.02] transition"
+                className="px-3 py-2 rounded-full bg-slate-900 text-white text-base hover:scale-[1.02] transition"
               >
                 Send
               </button>
