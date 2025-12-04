@@ -122,50 +122,42 @@ function Navigation() {
 function HeroSection() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900" />
-      <div className="absolute inset-0 opacity-20" style={{ backgroundImage: `linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px)`, backgroundSize: "60px 60px" }} />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-teal-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#f6f9ff] via-[#f2f6ff] to-[#f9f5ff]" />
+      <div className="absolute inset-0 opacity-25" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px)`, backgroundSize: "54px 54px" }} />
+      <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-sky-200/60 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-rose-200/60 rounded-full blur-3xl" />
+      <div className="absolute -top-24 right-10 w-56 h-56 bg-gradient-to-b from-sky-300/50 to-indigo-200/0 rounded-full blur-3xl" />
+      <div className="absolute -bottom-28 left-8 w-60 h-60 bg-gradient-to-t from-rose-300/55 to-sky-200/0 rounded-full blur-3xl" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 text-center">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
-          </span>
-          <span className="text-sm font-medium text-white/80">Available for new opportunities</span>
-        </motion.div>
-
-        <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight">
-          Shubhi <span className="bg-gradient-to-r from-teal-400 via-indigo-400 to-orange-400 bg-clip-text text-transparent">Thapan</span>
+        <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="text-5xl md:text-7xl lg:text-8xl font-bold text-slate-900 mb-6 tracking-tight">
+          Shubhi <span className="bg-gradient-to-r from-sky-700 via-indigo-600 to-rose-500 bg-clip-text text-transparent">Thapan</span>
         </motion.h1>
+        <div className="mx-auto h-px w-28 bg-gradient-to-r from-sky-500/70 via-indigo-500/70 to-rose-500/70 mb-10" />
 
-        <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-xl md:text-2xl font-medium text-slate-300 mb-8">
+        <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-xl md:text-2xl font-medium text-slate-700 mb-8">
           Business Architecture Associate Manager
         </motion.p>
 
-        <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="text-lg text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed">
+        <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="text-lg text-slate-600 max-w-3xl mx-auto mb-12 leading-relaxed">
           13+ years of experience in software development with expertise in Microsoft technologies. Specialized in designing complex microservices-based integration solutions using ASP.NET Core, with strong domain knowledge in Commercial and Personal Insurance.
         </motion.p>
 
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-          <a href="mailto:shubhi.chemengg@gmail.com" className="group flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-teal-500 to-indigo-500 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-teal-500/25 transition-all hover:-translate-y-0.5">
+          <a href="mailto:shubhi.chemengg@gmail.com" className="group flex items-center gap-2 px-8 py-4 bg-black text-white font-semibold rounded-full hover:shadow-lg hover:shadow-slate-500/20 transition-all hover:-translate-y-0.5">
             <Mail size={20} /> Get In Touch <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </a>
-          <button onClick={() => document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" })} className="flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full border border-white/20 hover:bg-white/20 transition-all">
+          <button onClick={() => document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" })} className="flex items-center gap-2 px-8 py-4 bg-white text-slate-900 font-semibold rounded-full border border-slate-200 hover:bg-slate-50 transition-all">
             View Experience
           </button>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.5 }} className="flex flex-wrap items-center justify-center gap-4 text-sm">
-          <a href="tel:+17327622245" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition-colors">
-            <Phone size={16} className="text-teal-400" /> +1 (732) 762-2245
-          </a>
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300">
-            <MapPin size={16} className="text-indigo-400" /> Piscataway, NJ, USA
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-700 shadow-sm">
+            <MapPin size={16} className="text-slate-900" /> Piscataway, NJ, USA
           </div>
-          <a href="https://linkedin.com/in/shubhi-thapan" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition-colors">
-            <Linkedin size={16} className="text-orange-400" /> LinkedIn Profile
+          <a href="https://linkedin.com/in/shubhi-thapan" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-colors shadow-sm">
+            <Linkedin size={16} className="text-slate-900" /> LinkedIn Profile
           </a>
         </motion.div>
       </div>
@@ -191,7 +183,11 @@ function ExperienceSection() {
         "SME for API Studio Gateway, streamlining API onboarding through Azure API Management (APIM)",
         "Led migration of 40+ applications to Azure cloud with minimal disruption",
         "SME for Duck Creek Anywhere API and Insurity API integration architecture",
-        "Mentor and guide teams of 15+ members, fostering skill development"
+        "Mentor and guide teams of 15+ members, fostering skill development",
+        "Chubb (client): led Marketplace builds for Auto 1.0, Benchmarq, Forefront; integrated third-party data (LexisNexis, B360, Elias) and Bur reports; designed scalable pricing/offer frameworks and appetite extensions",
+        "Chubb (client): expert in Duck Creek headless APIs, session management, native scripts; improved create-quote flow from 30s to 5s; built BOP Fastpath, pricing-on-the-glass, and cross-sell architecture",
+        "Chubb (client): implemented quote proposal XSLT externalization (Finlines, Benchmarq, Cyber), externalized Workcomp code, improved multi-location BOP experience; partnered on digital partner flows and CI integrations",
+        "Chubb (client): deep knowledge of Client WIP, ICC, GDP, Qlik reporting; set up xUnit with Prodigy; delivered GPT chatbot POC"
       ]
     },
     {
@@ -422,55 +418,52 @@ function AccomplishmentsSection() {
 // Contact Section
 function ContactSection() {
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "shubhi.chemengg@gmail.com", href: "mailto:shubhi.chemengg@gmail.com", color: "from-rose-500 to-pink-500" },
-    { icon: Phone, label: "Phone", value: "+1 (732) 762-2245", href: "tel:+17327622245", color: "from-teal-500 to-cyan-500" },
-    { icon: MapPin, label: "Location", value: "Piscataway, NJ, USA", href: null, color: "from-indigo-500 to-purple-500" },
-    { icon: Linkedin, label: "LinkedIn", value: "Connect on LinkedIn", href: "https://linkedin.com/in/shubhi-thapan", color: "from-blue-500 to-sky-500" }
+    { icon: Mail, label: "Email", value: "shubhi.chemengg@gmail.com", href: "mailto:shubhi.chemengg@gmail.com", color: "from-[#ea4335] to-[#c5221f]" },
+    { icon: MapPin, label: "Location", value: "Piscataway, NJ, USA", href: null, color: "from-[#d93025] to-[#c5221f]" },
+    { icon: Linkedin, label: "LinkedIn", value: "Connect on LinkedIn", href: "https://linkedin.com/in/shubhi-thapan", color: "from-[#0a66c2] to-[#0a66c2]" }
   ];
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)`, backgroundSize: "40px 40px" }} />
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-teal-500/20 rounded-full blur-3xl" />
+    <section id="contact" className="py-24 bg-gradient-to-br from-[#f6f9ff] via-white to-[#f9f5ff] relative overflow-hidden">
+      <div className="absolute inset-0 opacity-15" style={{ backgroundImage: `radial-gradient(circle at 2px 2px, rgba(0,0,0,0.05) 1px, transparent 0)`, backgroundSize: "44px 44px" }} />
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-sky-200/60 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-1/4 w-56 h-56 bg-rose-200/55 rounded-full blur-3xl" />
+      <div className="absolute -top-16 right-10 w-52 h-52 bg-gradient-to-b from-sky-300/50 to-indigo-200/0 rounded-full blur-3xl" />
+      <div className="absolute -bottom-20 left-8 w-60 h-60 bg-gradient-to-t from-rose-300/55 to-sky-200/0 rounded-full blur-3xl" />
 
-      <div className="max-w-5xl mx-auto px-6 relative z-10">
+      <div className="max-w-4xl mx-auto px-5 relative z-10">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-          <span className="inline-block px-4 py-2 rounded-full bg-white/10 text-white/80 text-sm font-semibold mb-4 border border-white/20">Get In Touch</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Let's Work Together</h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">Ready to discuss your next project or opportunity?</p>
+          <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-white via-slate-50 to-white text-slate-700 text-sm font-semibold mb-4 border border-slate-200 shadow-sm shadow-sky-100/60">Get In Touch</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-3">Let's Work Together</h2>
+          <div className="mx-auto h-px w-20 bg-gradient-to-r from-sky-500/70 via-indigo-500/70 to-rose-500/70 mb-5" />
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">Ready to discuss your next project or opportunity?</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
           {contactInfo.map((item, index) => {
             const Icon = item.icon;
-            const Content = () => (
-              <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 hover:bg-white/10 transition-all group">
-                <div className="flex items-start gap-4">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${item.color} flex items-center justify-center flex-shrink-0 shadow-lg`}>
-                    <Icon className="text-white" size={24} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-slate-400 mb-1">{item.label}</p>
-                    <p className="text-white font-semibold truncate">{item.value}</p>
-                  </div>
-                  {item.href && <ArrowUpRight className="text-slate-400 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" size={20} />}
-                </div>
-              </div>
-            );
             return (
-              <motion.div key={item.label} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}>
-                {item.href ? <a href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"><Content /></a> : <Content />}
-              </motion.div>
+              <motion.a
+                key={item.label}
+                href={item.href || undefined}
+                target={item.href?.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08 }}
+                className="flex items-center gap-2 px-3 py-2 rounded-full bg-white border border-slate-200 shadow-sm hover:-translate-y-0.5 hover:shadow-md transition-all"
+              >
+                <div className={`w-8 h-8 rounded-full bg-gradient-to-r ${item.color} flex items-center justify-center shadow-sm`}>
+                  <Icon className="text-white" size={16} />
+                </div>
+                <span className="text-sm font-semibold text-slate-800">{item.label}</span>
+                {item.href && <ArrowUpRight className="text-slate-400 group-hover:text-slate-900 transition-all" size={14} />}
+              </motion.a>
             );
           })}
         </div>
 
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5 }} className="text-center">
-          <a href="mailto:shubhi.chemengg@gmail.com" className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-teal-500 to-indigo-500 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-teal-500/25 transition-all hover:-translate-y-0.5 group">
-            <Send size={20} /> Send a Message <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </a>
-        </motion.div>
       </div>
     </section>
   );
