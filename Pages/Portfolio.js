@@ -91,7 +91,7 @@ function Navigation() {
               ))}
             </div>
 
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className={`md:hidden p-2 rounded-lg ${isScrolled ? "text-slate-900" : "text-white"}`}>
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2 rounded-lg text-slate-900">
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
