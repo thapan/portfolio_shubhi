@@ -489,6 +489,7 @@ function ChatBotBeta() {
     { label: "Team leadership", prompt: "What is your team leadership experience?" },
     { label: "AI & automation", prompt: "Tell me about AI or chatbot work you’ve done" },
     { label: "How you can help", prompt: "How can you help on a project?" },
+    { label: "Technical skills", prompt: "List your core technical skills" },
   ];
 
   const messagesEndRef = useRef(null);
@@ -506,9 +507,10 @@ function ChatBotBeta() {
 
   const buildReply = (text) => {
     const q = text.toLowerCase();
+    const wordMatch = (words) => words.some((w) => new RegExp(`\\b${w}\\b`, "i").test(text));
     const has = (words) => words.some((w) => q.includes(w));
 
-    if (has(["hello", "hi", "hey", "greetings"])) {
+    if (wordMatch(["hello", "hi", "hey", "greetings"])) {
       return "Hello! I’m here to help. Ask about my experience, integrations, pricing work, team leadership, or how I can support your project.";
     }
     if (has(["year", "experience", "exp", "background"])) {
@@ -531,6 +533,9 @@ function ChatBotBeta() {
     }
     if (has(["help", "how", "support", "need", "project"])) {
       return "I can help with architecture, integrations, marketplace/product builds, pricing engines, performance tuning, and partnering with business to deliver safely.";
+    }
+    if (has(["skill", "skills", "tech", "stack", "technology"])) {
+      return "Core skills: ASP.NET Core/C#, SQL Server, LINQ; React; Duck Creek headless/Anywhere integrations; Azure APIM; Kafka/IBM MQ; microservices and integration patterns; pricing/offer engines; reporting (Client WIP, ICC, GDP, Qlik); testing (xUnit/Prodigy).";
     }
     return "I’m here to help—ask about integrations, pricing/quote acceleration, marketplace builds, team leadership, or AI/automation. If you share a scenario, I’ll tailor a suggestion.";
   };
