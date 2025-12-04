@@ -181,11 +181,12 @@ function ExperienceSection() {
         "Lead design of microservices-based integration for customer, policy, and underwriting workflows using ASP.NET Core, SQL Server, TPL, Kafka, and IBM MQ",
         "Standardized API onboarding as SME for API Studio Gateway and Azure API Management; migrated 40+ applications to Azure with minimal disruption",
         "Duck Creek and Insurity integration SME (Anywhere/headless APIs, session management, native scripting); coach and mentor teams of 15+",
-        "Chubb (client): drove Marketplace builds for Auto 1.0, Benchmarq, Forefront; built scalable pricing/offer frameworks and appetite extensions by county and revenue",
-        "Chubb (client): integrated external data (LexisNexis, B360, Elias) and Bur reports; externalized Workcomp code; improved multi-location BOP experience",
-        "Chubb (client): improved create-quote flow from ~30s to ~5s; delivered BOP Fastpath, pricing-on-the-glass, and cross-sell architecture",
-        "Chubb (client): implemented quote proposal XSLT externalization (Finlines, Benchmarq, Cyber); partnered on digital partner flows and CI integrations",
-        "Chubb (client): deep knowledge of Client WIP, ICC, GDP, Qlik reporting; set up xUnit with Prodigy and delivered a GPT chatbot POC"
+        "Chubb (client): Drove Marketplace builds for Auto 1.0, Benchmarq, Forefront; built scalable pricing/offer frameworks and appetite extensions by county and revenue",
+        "Chubb (client): Integrated external data (LexisNexis, B360, Elias) and bureau reports; externalized WorkComp code; improved multi-location BOP experience",
+        "Chubb (client): Improved create-quote flow from ~30s to ~5s; delivered BOP Fastpath, pricing-on-the-glass, and cross-sell architecture",
+        "Chubb (client): Implemented quote proposal XSLT externalization (FinLines, Benchmarq, Cyber); partnered on digital partner flows and CI integrations",
+        "Chubb (client): Deep knowledge of Client WIP, ICC, GDP, Qlik reporting; set up xUnit with Prodigy and delivered a GPT chatbot POC",
+        "Implemented GPT-based chatbot POC; passionate about spotting business pain points and applying AI to solve them"
       ]
     },
     {
@@ -377,7 +378,7 @@ function EducationSection() {
 function AccomplishmentsSection() {
   const accomplishments = [
     { title: "Accenture Celebrates Excellence Award", description: "Individual Contribution", icon: Trophy, color: "from-amber-500 to-yellow-500" },
-    { title: "7+ Projects Delivered", description: "Successfully within Chubb", icon: Target, color: "from-indigo-500 to-purple-500" },
+    { title: "12+ Projects Delivered", description: "Successfully within Chubb", icon: Target, color: "from-indigo-500 to-purple-500" },
     { title: "Zero Defect Delivery", description: "Supervised Agile Team", icon: CheckCircle, color: "from-emerald-500 to-green-500" },
     { title: "Star Team Award", description: "Quality of work", icon: Star, color: "from-orange-500 to-red-500" },
     { title: "Client Appreciation", description: "Best team notes", icon: Users, color: "from-sky-500 to-blue-500" },
@@ -415,7 +416,6 @@ function AccomplishmentsSection() {
 function ContactSection() {
   const contactInfo = [
     { icon: Mail, label: "Email", value: "shubhi.chemengg@gmail.com", href: "mailto:shubhi.chemengg@gmail.com", color: "from-[#ea4335] to-[#c5221f]" },
-    { icon: MapPin, label: "Location", value: "Piscataway, NJ, USA", href: null, color: "from-[#d93025] to-[#c5221f]" },
     { icon: Linkedin, label: "LinkedIn", value: "Connect on LinkedIn", href: "https://linkedin.com/in/shubhi-thapan", color: "from-[#0a66c2] to-[#0a66c2]" }
   ];
 
