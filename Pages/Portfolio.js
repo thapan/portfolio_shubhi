@@ -71,10 +71,10 @@ function Navigation() {
           <div className="flex items-center justify-between h-16 md:h-20">
             <motion.button
               onClick={() => scrollToSection("hero")}
-              className={`font-bold text-xl tracking-tight ${isScrolled ? "text-slate-900" : "text-white"}`}
+              className="font-bold text-2xl tracking-tight text-slate-900"
               whileHover={{ scale: 1.02 }}
             >
-              ST<span className="text-teal-500">.</span>
+              ∞
             </motion.button>
 
             <div className="hidden md:flex items-center gap-1">
@@ -140,7 +140,7 @@ function HeroSection() {
         </motion.p>
 
         <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="text-lg text-slate-600 max-w-3xl mx-auto mb-12 leading-relaxed">
-          13+ years of experience in software development with expertise in Microsoft technologies. Specialized in designing complex microservices-based integration solutions using ASP.NET Core, with strong domain knowledge in Commercial and Personal Insurance.
+          13+ years modernizing insurance platforms on the Microsoft stack—specializing in microservices, API integration, and experience-led delivery for commercial and personal lines.
         </motion.p>
 
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
@@ -178,39 +178,36 @@ function ExperienceSection() {
     {
       company: "Accenture", role: "Business Architecture Associate Manager", period: "Jul 2019 - Present", location: "White House Station, USA & Bangalore, India", color: "from-indigo-500 to-purple-500",
       highlights: [
-        "Expertise in complex workflows including customer management, policy creation, underwriting processes",
-        "Project orchestration using Microsoft ASP.NET Core, SQL Server, Task Parallel Library with Kafka and IBM MQ",
-        "SME for API Studio Gateway, streamlining API onboarding through Azure API Management (APIM)",
-        "Led migration of 40+ applications to Azure cloud with minimal disruption",
-        "SME for Duck Creek Anywhere API and Insurity API integration architecture",
-        "Mentor and guide teams of 15+ members, fostering skill development",
-        "Chubb (client): led Marketplace builds for Auto 1.0, Benchmarq, Forefront; integrated third-party data (LexisNexis, B360, Elias) and Bur reports; designed scalable pricing/offer frameworks and appetite extensions",
-        "Chubb (client): expert in Duck Creek headless APIs, session management, native scripts; improved create-quote flow from 30s to 5s; built BOP Fastpath, pricing-on-the-glass, and cross-sell architecture",
-        "Chubb (client): implemented quote proposal XSLT externalization (Finlines, Benchmarq, Cyber), externalized Workcomp code, improved multi-location BOP experience; partnered on digital partner flows and CI integrations",
-        "Chubb (client): deep knowledge of Client WIP, ICC, GDP, Qlik reporting; set up xUnit with Prodigy; delivered GPT chatbot POC"
+        "Lead design of microservices-based integration for customer, policy, and underwriting workflows using ASP.NET Core, SQL Server, TPL, Kafka, and IBM MQ",
+        "Standardized API onboarding as SME for API Studio Gateway and Azure API Management; migrated 40+ applications to Azure with minimal disruption",
+        "Duck Creek and Insurity integration SME (Anywhere/headless APIs, session management, native scripting); coach and mentor teams of 15+",
+        "Chubb (client): drove Marketplace builds for Auto 1.0, Benchmarq, Forefront; built scalable pricing/offer frameworks and appetite extensions by county and revenue",
+        "Chubb (client): integrated external data (LexisNexis, B360, Elias) and Bur reports; externalized Workcomp code; improved multi-location BOP experience",
+        "Chubb (client): improved create-quote flow from ~30s to ~5s; delivered BOP Fastpath, pricing-on-the-glass, and cross-sell architecture",
+        "Chubb (client): implemented quote proposal XSLT externalization (Finlines, Benchmarq, Cyber); partnered on digital partner flows and CI integrations",
+        "Chubb (client): deep knowledge of Client WIP, ICC, GDP, Qlik reporting; set up xUnit with Prodigy and delivered a GPT chatbot POC"
       ]
     },
     {
       company: "Accenture", role: "Team Lead", period: "Jun 2018 - Jun 2019", location: "Bangalore, India", color: "from-teal-500 to-cyan-500",
       highlights: [
-        "Led Agile team as Tech Lead, delivering tailored solutions to meet client requirements",
-        "Designed and developed microservices, deploying on PCF Cloud via Jenkins CI/CD pipelines",
-        "Achieved zero-defect project deliveries ensuring high-quality outcomes"
+        "Led an Agile squad as tech lead, shaping solutions directly with clients",
+        "Architected and shipped microservices deployed to PCF via Jenkins CI/CD",
+        "Maintained zero-defect releases through tight quality gates and reviews"
       ]
     },
     {
       company: "Wipro", role: "Sr. Developer", period: "Mar 2016 - Jun 2018", location: "Bangalore, India", color: "from-orange-500 to-amber-500",
       highlights: [
-        "Spearheaded development of dynamic, responsive web applications using React.js",
-        "Masterminded RESTful web services for MS SQL database interaction via Web API"
+        "Built dynamic, responsive web applications with React",
+        "Designed RESTful services against MS SQL backends and integrated them into the UI"
       ]
     },
     {
       company: "Tata Consultancy Services", role: "Sr. Developer", period: "Aug 2011 - Feb 2016", location: "Gurgaon, India", color: "from-rose-500 to-pink-500",
       highlights: [
-        "Enhanced applications using ASP.NET MVC, C#, LINQ, WCF, Web Services, EPiServer",
-        "Achieved highest performance rating in company during annual review",
-        "Served as Team Leader and represented group in TCS training programs"
+        "Delivered enterprise applications using ASP.NET MVC, C#, LINQ, WCF, Web Services, and EPiServer",
+        "Earned top performance ratings and served as team lead and training representative"
       ]
     }
   ];
@@ -221,7 +218,7 @@ function ExperienceSection() {
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
           <span className="inline-block px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 text-sm font-semibold mb-4">Career Journey</span>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Professional Experience</h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto">Over 13 years of progressive experience in software development and enterprise architecture</p>
+          <p className="text-lg text-slate-500 max-w-2xl mx-auto">13+ years leading software development and enterprise architecture in insurance</p>
         </motion.div>
 
         <div className="space-y-8">
